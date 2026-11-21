@@ -1,0 +1,89 @@
+/* ---------- Thème : toutes les couleurs passent par ces variables ---------- */
+:root,
+[data-theme="light"] {
+  --bg: #fbfaf7;
+  --fg: #16161a;
+  --muted: #6b6b76;
+  --line: #e6e3dc;
+  --accent: #ff5b2e;
+  --card-fg: #16161a;
+}
+
+[data-theme="dark"] {
+  --bg: #111113;
+  --fg: #f2f1ee;
+  --muted: #9a9aa5;
+  --line: #2a2a2f;
+  --accent: #ff7a52;
+}
+
+/* Easter egg : la couleur d'accent fait le tour de l'arc-en-ciel */
+[data-party="true"] {
+  animation: party 3s linear infinite;
+}
+@keyframes party {
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+.container {
+  width: min(100% - 3rem, 64rem);
+  margin-inline: auto;
+}
+
+/* Lien avec soulignement animé (micro-interaction) */
+.link {
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.3s ease;
+}
+.link:hover {
+  background-size: 100% 1px;
+}
+
+/* Curseur personnalisé : on cache le curseur natif seulement s'il est actif */
+.has-custom-cursor,
+.has-custom-cursor * {
+  cursor: none !important;
+}
+
+/* Accessibilité : on coupe les animations si l'utilisateur le demande */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

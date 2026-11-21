@@ -1,0 +1,49 @@
+/* Le conteneur se déplace (translate en JS), le <span> se dessine et s'anime */
+.dot,
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  pointer-events: none;
+  display: none;
+}
+
+:global(.has-custom-cursor) .dot,
+:global(.has-custom-cursor) .ring {
+  display: block;
+}
+
+.dot span,
+.ring span {
+  position: absolute;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dot span {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+}
+
+.ring span {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--fg);
+  opacity: 0.4;
+  transition: width 0.25s ease, height 0.25s ease, opacity 0.25s ease, background 0.25s ease;
+}
+
+.ring.hover span {
+  width: 64px;
+  height: 64px;
+  opacity: 1;
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.ring.down span {
+  width: 24px;
+  height: 24px;
+}

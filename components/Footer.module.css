@@ -1,0 +1,41 @@
+.footer {
+  border-top: 1px solid var(--line);
+  padding: 5rem 0 2rem;
+}
+
+.contact {
+  color: var(--muted);
+  margin: 0 0 0.5rem;
+}
+
+.email {
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+.email:hover {
+  color: var(--accent);
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 4rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.socials {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.made {
+  margin: 0;
+}
