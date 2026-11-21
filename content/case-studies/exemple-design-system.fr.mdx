@@ -1,21 +1,29 @@
 export const metadata = {
-  title: "Projet exemple : design system",
-  summary: "Construire un design system partagé par 4 équipes produit.",
-  role: "Lead Product Designer",
-  year: "2024",
-  tags: ["Design system", "Accessibilité"],
-  order: 2,
-  color: "#caffbf",
+  title: "Agent Design System & serveur MCP : outiller la livraison produit",
+  summary:
+    "Relier Figma, design tokens et codebase (React / Vue 3) à un serveur MCP pour permettre aux équipes de prototyper et livrer des écrans conformes en autonomie.",
+  role: "Lead Product Designer · Design Ops",
+  year: "2025 — 2026",
+  tags: ["Design System", "MCP Server", "Multi-agents", "React / Vue 3"],
+  order: 1,
 };
 
 ## Le contexte
 
-Remplace ce texte par ton propre projet.
+Au sein d'une scale-up SaaS spécialisée dans l'orchestration logistique et le last-mile, plusieurs équipes produit travaillent en parallèle sur des environnements techniques hétérogènes. L'équipe Design devait absorber une forte demande d'écrans tout en préservant du temps pour la Product Discovery.
 
-## Ma démarche
+## Le problème
 
-Inventaire de l'existant, définition des tokens, des composants, de la gouvernance…
+Sans garde-fous, l'usage d'assistants IA par les équipes produit génère du *skip-discovery* et de la dette d'interface : composants réinventés, règles d'accessibilité ignorées et allers-retours constants en design review.
 
-## Les résultats
+## La démarche
 
-Adoption, temps gagné, cohérence visuelle.
+1. **Discovery first** : formalisation d'un cadre méthodologique (données d'usage, personas, objectifs métier) obligatoire avant toute génération ou maquettage.
+2. **Source de vérité unifiée** : alignement strict entre les bibliothèques Figma, les design tokens et les implémentations code.
+3. **Serveur MCP & vérifications déterministes** : exposition du Design System et des règles d'assemblage via un serveur MCP afin que les agents IA utilisés par les PM et développeurs produisent des écrans conformes dès le premier jet.
+
+## Résultats & apprentissages
+
+- Autonomisation des PM et développeurs sur les parcours standards
+- Réduction drastique des frictions lors des revues design/tech
+- Bande passante de l'équipe Design recentrée sur la recherche utilisateur et les problèmes complexes

@@ -1,13 +1,20 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Instrument_Serif } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import { dictionaries, isLocale, locales } from "@/lib/i18n";
 import { site } from "@/lib/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Cursor from "@/components/Cursor";
 import EasterEgg from "@/components/EasterEgg";
 import "../globals.css";
+
+const instrumentSerif = Instrument_Serif({
+  weight: "400",
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 // Génère /fr et /en au moment du build
 export function generateStaticParams() {
@@ -23,7 +30,7 @@ export async function generateMetadata({
   const { lang } = await params;
   const t = dictionaries[isLocale(lang) ? lang : "fr"];
   return {
-    title: { default: `${site.name} · ${t.home.title}`, template: `%s · ${site.name}` },
+    title: { default: `${site.name} · ${site.role}`, template: `%s · ${site.name}` },
     description: t.home.intro,
   };
 }
@@ -43,7 +50,14 @@ export default async function RootLayout({
   const t = dictionaries[lang];
 
   return (
-    <html lang={lang} suppressHydrationWarning style={{ ["--font-sans" as string]: GeistSans.style.fontFamily }}>
+    <html
+      lang={lang}
+      suppressHydrationWarning
+      style={{
+        ["--font-sans" as string]: GeistSans.style.fontFamily,
+        ["--font-serif" as string]: instrumentSerif.style.fontFamily,
+      }}
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
@@ -51,7 +65,6 @@ export default async function RootLayout({
         <Header lang={lang} t={t} />
         <main>{children}</main>
         <Footer lang={lang} t={t} />
-        <Cursor />
         <EasterEgg message={t.egg} />
       </body>
     </html>

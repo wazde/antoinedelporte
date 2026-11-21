@@ -1,30 +1,40 @@
-/* ---------- Thème : toutes les couleurs passent par ces variables ---------- */
+/* ---------- Palette d'Antoine ----------
+ * white_smoke : #eff1ed (100:#30362a … 900:#fcfcfc)
+ * dark_khaki  : #373d20 (100:#0b0c06, 200:#16180d, 300:#212413, 400:#2c3019, 500:#373d20)
+ * dusty_olive : #717744 (300:#444829, 400:#5b6037, 500:#717744, 700:#b3b985)
+ * dry_sage    : #bcbd8b (500:#bcbd8b, 700:#d6d7b9, 800:#e4e4d0, 900:#f1f2e8)
+ * ash_brown   : #766153 (400:#5d4d42, 500:#766153, 700:#b29e92, 900:#e5dfdb)
+ */
 :root,
 [data-theme="light"] {
-  --bg: #fbfaf7;
-  --fg: #16161a;
-  --muted: #6b6b76;
-  --line: #e6e3dc;
-  --accent: #ff5b2e;
-  --card-fg: #16161a;
+  --bg: #eff1ed;          /* white_smoke DEFAULT */
+  --bg-subtle: #e4e4d0;   /* dry_sage 800 */
+  --bg-card: #f6f7f5;     /* white_smoke 700 */
+  --fg: #16180d;          /* dark_khaki 200 (15.8:1) */
+  --heading: #373d20;     /* dark_khaki DEFAULT (10:1) */
+  --muted: #5b6037;       /* dusty_olive 400 (5.8:1) */
+  --line: #c0c7b8;        /* white_smoke 400 */
+  --accent: #766153;      /* ash_brown DEFAULT (5.1:1) */
+  --accent-soft: #e5dfdb; /* ash_brown 900 */
+  --sage: #bcbd8b;        /* dry_sage DEFAULT */
 }
 
 [data-theme="dark"] {
-  --bg: #111113;
-  --fg: #f2f1ee;
-  --muted: #9a9aa5;
-  --line: #2a2a2f;
-  --accent: #ff7a52;
+  --bg: #16180d;          /* dark_khaki 200 */
+  --bg-subtle: #212413;   /* dark_khaki 300 */
+  --bg-card: #2c3019;     /* dark_khaki 400 */
+  --fg: #eff1ed;          /* white_smoke DEFAULT (15.8:1) */
+  --heading: #f1f2e8;     /* dry_sage 900 */
+  --muted: #b3b985;       /* dusty_olive 700 (8.7:1) */
+  --line: #444829;        /* dusty_olive 300 */
+  --accent: #b29e92;      /* ash_brown 700 (7.0:1) */
+  --accent-soft: #2f2621; /* ash_brown 200 */
+  --sage: #717744;        /* dusty_olive DEFAULT */
 }
 
-/* Easter egg : la couleur d'accent fait le tour de l'arc-en-ciel */
+/* Easter egg discret : bascule en édition sépia inversée */
 [data-party="true"] {
-  animation: party 3s linear infinite;
-}
-@keyframes party {
-  to {
-    filter: hue-rotate(360deg);
-  }
+  filter: sepia(0.35) contrast(1.06);
 }
 
 /* ---------- Base ---------- */
@@ -43,9 +53,18 @@ body {
   background: var(--bg);
   color: var(--fg);
   font-family: var(--font-sans), system-ui, sans-serif;
-  line-height: 1.6;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+h1,
+h2,
+h3,
+.serif {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 400;
+  color: var(--heading);
 }
 
 a {
@@ -54,28 +73,23 @@ a {
 
 ::selection {
   background: var(--accent);
-  color: #fff;
+  color: #eff1ed;
 }
 
 .container {
-  width: min(100% - 3rem, 64rem);
+  width: min(100% - 3rem, 66rem);
   margin-inline: auto;
 }
 
-/* Lien avec soulignement animé (micro-interaction) */
+/* Lien avec soulignement éditorial fin */
 .link {
   text-decoration: none;
-  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
-  transition: background-size 0.3s ease;
+  background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.25s ease, color 0.2s ease;
 }
 .link:hover {
+  color: var(--accent);
   background-size: 100% 1px;
-}
-
-/* Curseur personnalisé : on cache le curseur natif seulement s'il est actif */
-.has-custom-cursor,
-.has-custom-cursor * {
-  cursor: none !important;
 }
 
 /* Accessibilité : on coupe les animations si l'utilisateur le demande */

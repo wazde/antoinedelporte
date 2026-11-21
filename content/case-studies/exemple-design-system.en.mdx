@@ -1,21 +1,29 @@
 export const metadata = {
-  title: "Example project: design system",
-  summary: "Building a design system shared by 4 product teams.",
-  role: "Lead Product Designer",
-  year: "2024",
-  tags: ["Design system", "Accessibility"],
-  order: 2,
-  color: "#caffbf",
+  title: "Agent Design System & MCP server: scaling compliant product delivery",
+  summary:
+    "Connecting Figma, design tokens, and multi-stack codebases (React / Vue 3) through an MCP server so teams can prototype and ship design-compliant flows autonomously.",
+  role: "Lead Product Designer · Design Ops",
+  year: "2025 — 2026",
+  tags: ["Design System", "MCP Server", "Multi-agent workflows", "React / Vue 3"],
+  order: 1,
 };
 
 ## Context
 
-Replace this text with your own project.
+At a logistics and last-mile orchestration SaaS scale-up, multiple product squads ship across heterogeneous front-end stacks. The Design team needed to support high delivery velocity while protecting bandwidth for upstream Product Discovery.
 
-## My process
+## The problem
 
-Audit of what existed, tokens, components, governance…
+Unchecked AI UI generation quickly leads to *skip-discovery* and interface debt: reinvented components, broken accessibility rules, and heavy back-and-forth during design reviews.
 
-## Results
+## Approach
 
-Adoption, time saved, visual consistency.
+1. **Discovery first**: enforced methodological guardrails (usage analytics, personas, business goals) before any UI generation or prototyping begins.
+2. **Unified source of truth**: tight alignment across Figma libraries, design tokens, and component documentation.
+3. **MCP server & deterministic checks**: exposed the Design System and composition rules through an MCP server so AI agents used by PMs and engineers assemble compliant screens on the first pass.
+
+## Outcomes & learnings
+
+- PMs and engineers ship standard flows autonomously with high design compliance
+- Significantly less friction between Design and Engineering
+- Design team bandwidth refocused on deep user research and complex workflows

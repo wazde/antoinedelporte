@@ -7,49 +7,99 @@ export function isLocale(value: string): value is Locale {
 }
 
 const fr = {
-  nav: { work: "Projets", about: "À propos" },
+  nav: { work: "Études de cas", about: "À propos" },
   home: {
-    hello: "Salut, moi c'est",
-    title: "Product Designer.",
+    kicker: "Lead Product Designer · Lille · Full Remote",
+    title: "Produits complexes, Design Systems & Design Ops",
+    titleItalic: "augmentés par l'IA.",
     intro:
-      "Je conçois des produits numériques clairs, utiles et (un peu) joyeux. Ici, tu trouveras mes études de cas et quelques expérimentations.",
-    selected: "Projets sélectionnés",
+      "Près de 10 ans à concevoir des produits B2B exigeants — de la Product Discovery en binôme avec les PM jusqu'au prototypage direct dans la codebase et l'outillage d'agents IA encadrés par le Design System.",
+    pillars: [
+      {
+        label: "01 · Discovery first",
+        text: "Pas d'interface générée à l'aveugle : données d'usage, objectifs métier et garde-fous méthodologiques précèdent la production.",
+      },
+      {
+        label: "02 · Design Systems & MCP",
+        text: "Sources de vérité reliées au code (Figma, tokens, React/Vue) et serveurs MCP pour permettre aux équipes de livrer en autonomie.",
+      },
+      {
+        label: "03 · Leadership par le craft",
+        text: "Un management de pratique centré sur la qualité d'expérience, la vitesse d'exécution et la réduction des frictions avec la tech.",
+      },
+    ],
+    selected: "Études de cas sélectionnées",
     readCase: "Lire l'étude de cas",
   },
   about: {
-    title: "À propos",
+    kicker: "À propos",
+    title: "Un profil hybride entre vision produit, design et code.",
+    lead:
+      "Lead Product Designer basé dans la métropole lilloise, je conçois des produits numériques depuis près de 10 ans avec une obsession : rendre simples et fiables des outils métiers complexes.",
     body: [
-      "Écris ici quelques lignes sur toi : ton parcours, ta façon de travailler, ce qui te fait vibrer dans le design produit.",
-      "Tu peux aussi parler de ce que tu fais en dehors du travail : ça rend un portfolio bien plus mémorable.",
+      "J'ai bâti mon socle pendant près de 8 ans sur des produits SaaS de géolocalisation et de gestion de flotte, en évoluant du webdesign à l'UX/UI puis au Product Design, avant de rejoindre une scale-up SaaS spécialisée dans l'orchestration logistique et le last-mile où j'encadre aujourd'hui la pratique Product & Graphic Design.",
+      "Ma conviction : l'IA n'a de valeur en design que si elle s'appuie sur une Discovery solide et un système structuré. Je conçois des workflows multi-agents et des serveurs MCP branchés sur nos sources de vérité (Figma, design tokens, règles métier) pour sécuriser la vélocité des équipes sans sacrifier la cohérence ni l'accessibilité.",
+      "Au quotidien, je privilégie un leadership de terrain, sans posture hiérarchique descendante : outiller les PM et les développeurs, débloquer les sujets techniques directement dans le code, et garder du temps de cerveau pour les vrais problèmes utilisateurs.",
+    ],
+     trajectoriesTitle: "Repères",
+    trajectories: [
+      { period: "2026 — Présent", role: "Lead Product Designer", context: "Scale-up SaaS logistique & last-mile" },
+      { period: "2024 — 2026", role: "Product Designer", context: "Scale-up SaaS logistique & last-mile" },
+      { period: "2016 — 2023", role: "Webdesigner → UX/UI → Product Designer", context: "SaaS B2B géolocalisation & gestion de flotte" },
     ],
   },
-  caseStudy: { back: "← Tous les projets", role: "Rôle", year: "Année" },
-  footer: { cv: "Télécharger mon CV", contact: "Envie d'échanger ?", made: "Codé avec soin." },
+  caseStudy: { back: "← Toutes les études de cas", role: "Rôle", year: "Période" },
+  footer: { cv: "CV (PDF)", contact: "Discuter d'un produit, d'un système ou d'une opportunité", made: "Conçu et codé avec soin." },
   theme: { toLight: "Passer en mode clair", toDark: "Passer en mode sombre" },
-  egg: "🎉 Mode fête activé ! (retape le code pour l'arrêter)",
+  egg: "✦ Mode édition inversée activé (retape le code pour revenir)",
 };
 
 const en: typeof fr = {
-  nav: { work: "Work", about: "About" },
+  nav: { work: "Case studies", about: "About" },
   home: {
-    hello: "Hi, I'm",
-    title: "Product Designer.",
+    kicker: "Lead Product Designer · Lille, France · Full Remote",
+    title: "Complex products, Design Systems &",
+    titleItalic: "AI-augmented Design Ops.",
     intro:
-      "I design clear, useful and (slightly) joyful digital products. Here you'll find my case studies and a few experiments.",
-    selected: "Selected work",
-    readCase: "Read the case study",
+      "Nearly 10 years designing demanding B2B products—from upstream Product Discovery paired with PMs to prototyping straight in the codebase and building AI agent workflows governed by the Design System.",
+    pillars: [
+      {
+        label: "01 · Discovery first",
+        text: "No blind UI generation: usage data, business goals and methodological guardrails always come before production speed.",
+      },
+      {
+        label: "02 · Design Systems & MCP",
+        text: "Single sources of truth wired into code (Figma, tokens, React/Vue) and MCP servers empowering teams to ship autonomously.",
+      },
+      {
+        label: "03 · Craft-led leadership",
+        text: "Hands-on leadership focused on experience quality, execution speed, and removing friction with engineering teams.",
+      },
+    ],
+    selected: "Selected case studies",
+    readCase: "Read case study",
   },
   about: {
-    title: "About",
+    kicker: "About",
+    title: "A hybrid profile bridging product vision, design, and code.",
+    lead:
+      "Lead Product Designer based near Lille, France. For nearly 10 years I've been designing digital products with one focus: making complex business tools feel clear, reliable, and reassuring.",
     body: [
-      "Write a few lines about yourself here: your background, how you work, what excites you about product design.",
-      "You can also talk about what you do outside of work, it makes a portfolio far more memorable.",
+      "I built my foundation over 8 years on B2B fleet-management and geolocation SaaS products—growing from Web Designer to UX/UI and Product Designer—before joining a logistics & last-mile orchestration SaaS scale-up where I now lead the Product & Graphic Design practice.",
+      "My core belief: AI only brings real value to design when grounded in rigorous Discovery and a structured system. I build multi-agent workflows and MCP servers connected to our sources of truth (Figma, design tokens, domain rules) so product teams can move faster without trading away consistency or UX quality.",
+      "Day to day, I favor practice-led leadership over top-down management: equipping PMs and engineers to ship compliant flows autonomously, prototyping directly in the repository, and protecting design bandwidth for deep user problems.",
+    ],
+    trajectoriesTitle: "Timeline",
+    trajectories: [
+      { period: "2026 — Present", role: "Lead Product Designer", context: "Logistics & last-mile SaaS scale-up" },
+      { period: "2024 — 2026", role: "Product Designer", context: "Logistics & last-mile SaaS scale-up" },
+      { period: "2016 — 2023", role: "Web Designer → UX/UI → Product Designer", context: "B2B geolocation & fleet management SaaS" },
     ],
   },
-  caseStudy: { back: "← All projects", role: "Role", year: "Year" },
-  footer: { cv: "Download my resume", contact: "Want to chat?", made: "Crafted with care." },
+  caseStudy: { back: "← All case studies", role: "Role", year: "Timeline" },
+  footer: { cv: "Resume (PDF)", contact: "Let's talk about product, systems, or opportunities", made: "Designed and coded with care." },
   theme: { toLight: "Switch to light mode", toDark: "Switch to dark mode" },
-  egg: "🎉 Party mode on! (type the code again to stop it)",
+  egg: "✦ Inverted edition mode enabled (type the code again to reset)",
 };
 
 export const dictionaries = { fr, en };

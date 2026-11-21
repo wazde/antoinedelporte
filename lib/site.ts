@@ -1,11 +1,12 @@
 // ✏️ Toutes tes infos perso au même endroit : modifie ici, ça se répercute partout.
 export const site = {
-  name: "Prénom Nom",
-  email: "hello@example.com",
+  name: "Antoine Delporte",
+  role: "Lead Product Designer",
+  location: "Lille · Remote",
+  email: "contact@antoinedelporte.fr",
   socials: [
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/ton-profil" },
-    { label: "Dribbble", href: "https://dribbble.com/ton-profil" },
-    { label: "Behance", href: "https://www.behance.net/ton-profil" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/antoinedelporte" },
+    { label: "GitHub", href: "https://github.com/wazde" },
   ],
   // Dépose tes CV dans le dossier /public avec ces noms
   cv: { fr: "/cv-fr.pdf", en: "/cv-en.pdf" },

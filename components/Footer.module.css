@@ -1,18 +1,21 @@
 .footer {
   border-top: 1px solid var(--line);
-  padding: 5rem 0 2rem;
+  padding: 4.5rem 0 2.5rem;
 }
 
 .contact {
   color: var(--muted);
+  font-size: 0.92rem;
   margin: 0 0 0.5rem;
 }
 
 .email {
-  font-size: clamp(1.75rem, 5vw, 3rem);
-  font-weight: 600;
-  letter-spacing: -0.03em;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  color: var(--heading);
+  letter-spacing: -0.01em;
 }
+
 .email:hover {
   color: var(--accent);
 }
@@ -22,8 +25,10 @@
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 1rem;
-  margin-top: 4rem;
-  font-size: 0.9rem;
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.88rem;
   color: var(--muted);
 }
 
