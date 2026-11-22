@@ -9,22 +9,39 @@ export function isLocale(value: string): value is Locale {
 const fr = {
   nav: { work: "Études de cas", about: "À propos" },
   home: {
-    kicker: "Lead Product Designer · Lille · Full Remote",
+    kicker: "Lead Product Designer",
+    metaRight: "Lille · Full Remote · ~10 ans",
+    heroPrefix: "Je conçois",
+    heroFacets: [
+      "des produits B2B complexes.",
+      "des Design Systems vivants.",
+      "des workflows IA & MCP.",
+    ],
     title: "Produits complexes, Design Systems & Design Ops",
     titleItalic: "augmentés par l'IA.",
     intro:
-      "Près de 10 ans à concevoir des produits B2B exigeants — de la Product Discovery en binôme avec les PM jusqu'au prototypage direct dans la codebase et l'outillage d'agents IA encadrés par le Design System.",
+      "De la Product Discovery en binôme avec les PM jusqu'au prototypage direct dans la codebase — avec des agents IA encadrés par un Design System rigoureux, jamais générés à l'aveugle.",
+    facts: [
+      { k: "Focus", v: "Design Systems & Design Ops IA" },
+      { k: "Environnements", v: "Figma, Tokens, React, Vue 3" },
+      { k: "Approche", v: "Discovery first · Craft leadership" },
+    ],
+    ctaWork: "Voir les études de cas",
+    pillarsTitle: "Principes de pratique",
     pillars: [
       {
-        label: "01 · Discovery first",
-        text: "Pas d'interface générée à l'aveugle : données d'usage, objectifs métier et garde-fous méthodologiques précèdent la production.",
+        num: "01",
+        label: "Discovery first",
+        text: "Pas d'interface générée à l'aveugle : données d'usage, personas et objectifs métier précèdent toujours la production.",
       },
       {
-        label: "02 · Design Systems & MCP",
+        num: "02",
+        label: "Design Systems & MCP",
         text: "Sources de vérité reliées au code (Figma, tokens, React/Vue) et serveurs MCP pour permettre aux équipes de livrer en autonomie.",
       },
       {
-        label: "03 · Leadership par le craft",
+        num: "03",
+        label: "Leadership par le craft",
         text: "Un management de pratique centré sur la qualité d'expérience, la vitesse d'exécution et la réduction des frictions avec la tech.",
       },
     ],
@@ -85,22 +102,39 @@ const fr = {
 const en: typeof fr = {
   nav: { work: "Case studies", about: "About" },
   home: {
-    kicker: "Lead Product Designer · Lille, France · Full Remote",
+    kicker: "Lead Product Designer",
+    metaRight: "Lille, France · Full Remote · ~10 yrs",
+    heroPrefix: "I design",
+    heroFacets: [
+      "complex B2B products.",
+      "living Design Systems.",
+      "AI & MCP workflows.",
+    ],
     title: "Complex products, Design Systems &",
     titleItalic: "AI-augmented Design Ops.",
     intro:
-      "Nearly 10 years designing demanding B2B products—from upstream Product Discovery paired with PMs to prototyping straight in the codebase and building AI agent workflows governed by the Design System.",
+      "From upstream Product Discovery paired with PMs to prototyping straight in the codebase—using AI agents governed by a rigorous Design System, never blind UI generation.",
+    facts: [
+      { k: "Focus", v: "Design Systems & AI Design Ops" },
+      { k: "Stacks", v: "Figma, Tokens, React, Vue 3" },
+      { k: "Method", v: "Discovery first · Craft leadership" },
+    ],
+    ctaWork: "Browse case studies",
+    pillarsTitle: "Practice principles",
     pillars: [
       {
-        label: "01 · Discovery first",
-        text: "No blind UI generation: usage data, business goals and methodological guardrails always come before production speed.",
+        num: "01",
+        label: "Discovery first",
+        text: "No blind UI generation: usage data, personas and business goals always come before production speed.",
       },
       {
-        label: "02 · Design Systems & MCP",
+        num: "02",
+        label: "Design Systems & MCP",
         text: "Single sources of truth wired into code (Figma, tokens, React/Vue) and MCP servers empowering teams to ship autonomously.",
       },
       {
-        label: "03 · Craft-led leadership",
+        num: "03",
+        label: "Craft-led leadership",
         text: "Hands-on leadership focused on experience quality, execution speed, and removing friction with engineering teams.",
       },
     ],

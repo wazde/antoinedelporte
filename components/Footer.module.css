@@ -1,10 +1,10 @@
-/* Pied de page en miroir du haut : dégradé atmosphérique olive/sauge + reflet ambre */
+/* Pied de page en miroir du haut : dégradé atmosphérique olive/sauge + micro-lueur ambre */
 .footer {
   position: relative;
-  padding: 7rem 0 3rem;
+  padding: 6.5rem 0 3rem;
   color: var(--hero-on-atmo);
   background-image:
-    radial-gradient(50% 260px at 18% 100%, rgb(232 173 66 / 0.25) 0%, transparent 72%),
+    radial-gradient(45% 220px at 16% 100%, rgb(232 173 66 / 0.12) 0%, transparent 72%),
     radial-gradient(110% 380px at 50% 100%, var(--atmo-top-1) 0%, var(--atmo-top-2) 45%, transparent 100%),
     linear-gradient(180deg, var(--bg) 0%, var(--atmo-top-4) 22%, var(--atmo-top-3) 50%, var(--atmo-top-2) 78%, var(--atmo-top-1) 100%);
 }

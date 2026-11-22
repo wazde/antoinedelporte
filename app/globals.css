@@ -83,7 +83,7 @@ body {
   min-height: 100vh;
   background-color: var(--bg);
   background-image:
-    radial-gradient(55% 360px at 82% 0%, rgb(232 173 66 / 0.28) 0%, transparent 70%),
+    radial-gradient(45% 260px at 86% 0%, rgb(232 173 66 / 0.1) 0%, transparent 70%),
     radial-gradient(110% 520px at 50% 0%, var(--atmo-top-1) 0%, var(--atmo-top-2) 34%, var(--atmo-top-3) 68%, transparent 100%),
     linear-gradient(180deg, var(--atmo-top-2) 0px, var(--atmo-top-3) 420px, var(--atmo-top-4) 640px, var(--bg) 820px);
   background-repeat: no-repeat;

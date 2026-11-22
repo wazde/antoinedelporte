@@ -13,32 +13,58 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
 
   return (
     <div className="container">
-      {/* HÉRO ÉDITORIAL (tout le site vit à gauche, le chat IA est en panel fixe à droite) */}
+      {/* HÉRO ÉDITORIAL EN GRILLE MAGAZINE */}
       <section className={styles.hero}>
-        <p className={styles.kicker}>{t.home.kicker}</p>
-        <CyclingTitle prefix={t.home.title} facets={[t.home.titleItalic, ...t.chat.headingFacets.slice(1)]} />
-        <p className={styles.intro}>{t.home.intro}</p>
+        <div className={styles.metaBar}>
+          <span className={styles.metaLeft}>
+            <span className={styles.amberDot} aria-hidden />
+            {t.home.kicker}
+          </span>
+          <span className={styles.metaRight}>{t.home.metaRight}</span>
+        </div>
 
-        <div className={styles.heroActions}>
-          <a href="#work" className={styles.primaryCta}>
-            {t.home.selected} ↓
-          </a>
-          <a href={site.cv[lang]} download className={styles.secondaryCta}>
-            {t.footer.cv} ↓
-          </a>
+        <CyclingTitle prefix={t.home.heroPrefix} facets={t.home.heroFacets} />
+
+        <div className={styles.heroGrid}>
+          <dl className={styles.facts}>
+            {t.home.facts.map((f) => (
+              <div key={f.k} className={styles.factRow}>
+                <dt>{f.k}</dt>
+                <dd>{f.v}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <div className={styles.introCol}>
+            <p className={styles.intro}>{t.home.intro}</p>
+            <div className={styles.heroActions}>
+              <a href="#work" className={styles.primaryCta}>
+                {t.home.ctaWork} <span aria-hidden>↓</span>
+              </a>
+              <a href={site.cv[lang]} download className={styles.secondaryCta}>
+                {t.footer.cv} <span aria-hidden>↓</span>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 3 PILIERS ÉDITORIAUX */}
-      <section className={styles.pillarsSection} aria-label="Principes">
-        <dl className={styles.pillars}>
+      {/* 3 PILIERS EN GRILLE ÉDITORIALE OUVERTE (FILETS FINS) */}
+      <section className={styles.pillarsSection} aria-label={t.home.pillarsTitle}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>{t.home.pillarsTitle}</h2>
+          <span className={styles.sectionCount}>03</span>
+        </div>
+
+        <ol className={styles.pillars}>
           {t.home.pillars.map((p) => (
-            <div key={p.label} className={styles.pillar}>
-              <dt>{p.label}</dt>
-              <dd>{p.text}</dd>
-            </div>
+            <li key={p.num} className={styles.pillar}>
+              <span className={styles.pillarNum}>{p.num}</span>
+              <h3 className={styles.pillarHeading}>{p.label}</h3>
+              <p className={styles.pillarText}>{p.text}</p>
+            </li>
           ))}
-        </dl>
+        </ol>
       </section>
 
       {/* 3 CARTES DOSSIER ANIMÉES (ÉTUDES DE CAS) */}
@@ -81,6 +107,9 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                       </div>
 
                       <div className={styles.folderText}>
+                        <span className={styles.folderMeta}>
+                          {meta.year} · {meta.tags[0]}
+                        </span>
                         <h3 className={styles.folderTitle}>{meta.title}</h3>
                         <p className={styles.folderSummary}>{meta.summary}</p>
                       </div>
