@@ -130,6 +130,12 @@ a {
   margin-inline: auto;
 }
 
+@media (max-width: 640px) {
+  .container {
+    width: min(100% - 2rem, 66rem);
+  }
+}
+
 /* Lien avec soulignement éditorial fin */
 .link {
   text-decoration: none;

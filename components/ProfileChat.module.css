@@ -315,16 +315,30 @@
 }
 
 @media (max-width: 560px) {
+  .hero {
+    padding: 2.25rem 0 3.25rem;
+  }
+  .intro {
+    margin-bottom: 1.5rem;
+  }
+  .title {
+    font-size: clamp(2.15rem, 9.5vw, 3rem);
+  }
   .chatShell {
     padding: 1rem;
+    border-radius: 1.1rem;
     box-shadow:
-      0 0 0 8px var(--glass-ring),
-      0 20px 44px -20px rgb(22 24 13 / 0.24);
+      0 0 0 6px var(--glass-ring),
+      0 18px 36px -18px rgb(22 24 13 / 0.24);
   }
   .composer {
     padding-left: 0.75rem;
   }
   .sendButton {
     padding: 0.55rem 0.85rem;
+  }
+  .promptChip {
+    font-size: 0.78rem;
+    padding: 0.38rem 0.72rem;
   }
 }
