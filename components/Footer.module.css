@@ -11,9 +11,10 @@
 
 .email {
   font-family: var(--font-serif), Georgia, serif;
-  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-size: clamp(1.75rem, 4.2vw, 2.75rem);
+  font-weight: 600;
   color: var(--heading);
-  letter-spacing: -0.01em;
+  letter-spacing: 0.005em;
 }
 
 .email:hover {
