@@ -8,6 +8,30 @@
     linear-gradient(180deg, var(--bg) 0%, var(--atmo-top-4) 22%, var(--atmo-top-3) 50%, var(--atmo-top-2) 78%, var(--atmo-top-1) 100%);
 }
 
+.topRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footerStamp {
+  width: 6.75rem;
+  height: 6.75rem;
+  border-radius: 1.35rem;
+  object-fit: cover;
+  background: #eff1ed;
+  border: 2px solid rgb(246 247 245 / 0.55);
+  box-shadow:
+    0 0 0 8px rgb(246 247 245 / 0.16),
+    0 18px 36px -14px rgb(11 12 6 / 0.45);
+  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+.footerStamp:hover {
+  transform: translateY(-4px) rotate(4deg);
+}
+
 .contact {
   color: var(--hero-muted-on-atmo);
   font-size: 0.92rem;

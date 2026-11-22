@@ -12,6 +12,7 @@ export type ProjectMeta = {
   tags: string[];
   order: number; // ordre d'affichage sur l'accueil
   color?: string; // couleur de la carte sur l'accueil
+  illustration?: string; // illustration rubber hose associée
 };
 
 const DIR = path.join(process.cwd(), "content", "case-studies");

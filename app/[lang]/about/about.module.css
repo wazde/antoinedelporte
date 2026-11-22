@@ -2,6 +2,38 @@
   padding: 4rem 0 6rem;
 }
 
+.heroRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.75rem;
+}
+
+.illust {
+  width: 8.5rem;
+  height: 8.5rem;
+  border-radius: 1.5rem;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: #eff1ed;
+  border: 2px solid var(--glass-border);
+  box-shadow:
+    0 0 0 8px var(--glass-ring),
+    0 14px 32px -14px rgb(22 24 13 / 0.35);
+}
+
+@media (max-width: 640px) {
+  .heroRow {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+  .illust {
+    width: 6rem;
+    height: 6rem;
+  }
+}
+
 .kicker {
   color: var(--hero-muted-on-atmo);
   font-size: 0.82rem;

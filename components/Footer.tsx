@@ -6,10 +6,21 @@ export default function Footer({ lang, t }: { lang: Locale; t: Dictionary }) {
   return (
     <footer className={styles.footer}>
       <div className="container">
-        <p className={styles.contact}>{t.footer.contact}</p>
-        <a href={`mailto:${site.email}`} className={`link ${styles.email}`}>
-          {site.email}
-        </a>
+        <div className={styles.topRow}>
+          <div>
+            <p className={styles.contact}>{t.footer.contact}</p>
+            <a href={`mailto:${site.email}`} className={`link ${styles.email}`}>
+              {site.email}
+            </a>
+          </div>
+          <img
+            src="/illustrations/discovery.jpg"
+            alt=""
+            width={112}
+            height={112}
+            className={styles.footerStamp}
+          />
+        </div>
 
         <div className={styles.bottom}>
           <ul className={styles.socials}>

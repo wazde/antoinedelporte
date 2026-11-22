@@ -13,8 +13,19 @@ export default async function About({ params }: { params: Promise<{ lang: string
 
   return (
     <div className={`container ${styles.about}`}>
-      <p className={styles.kicker}>{t.about.kicker}</p>
-      <h1 className={styles.title}>{t.about.title}</h1>
+      <div className={styles.heroRow}>
+        <div>
+          <p className={styles.kicker}>{t.about.kicker}</p>
+          <h1 className={styles.title}>{t.about.title}</h1>
+        </div>
+        <img
+          src="/illustrations/discovery.jpg"
+          alt=""
+          width={140}
+          height={140}
+          className={styles.illust}
+        />
+      </div>
       <p className={styles.lead}>{t.about.lead}</p>
 
       <div className={styles.prose}>

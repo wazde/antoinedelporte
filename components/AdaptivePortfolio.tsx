@@ -166,11 +166,22 @@ export default function AdaptivePortfolio({
             </div>
 
             <div className={styles.wizardHeader}>
-              <p className={styles.kicker}>{copy.wizard.kicker}</p>
-              <h1 className={styles.wizardTitle}>
-                {copy.wizard.title} <em>{copy.wizard.titleItalic}</em>
-              </h1>
-              <p className={styles.wizardSubtitle}>{copy.wizard.subtitle}</p>
+              <div className={styles.wizardHeaderRow}>
+                <div>
+                  <p className={styles.kicker}>{copy.wizard.kicker}</p>
+                  <h1 className={styles.wizardTitle}>
+                    {copy.wizard.title} <em>{copy.wizard.titleItalic}</em>
+                  </h1>
+                  <p className={styles.wizardSubtitle}>{copy.wizard.subtitle}</p>
+                </div>
+                <img
+                  src="/illustrations/chat-bot.jpg"
+                  alt=""
+                  width={120}
+                  height={120}
+                  className={styles.stampLg}
+                />
+              </div>
             </div>
 
             <div className={styles.wizardBody}>
@@ -397,9 +408,20 @@ export default function AdaptivePortfolio({
       {prefs.view === "system" && (
         <section className={styles.systemSection}>
           <div className={styles.systemHeader}>
-            <p className={styles.kicker}>{copy.system.kicker}</p>
-            <h1 className={styles.compactTitle}>{copy.system.title}</h1>
-            <p className={styles.compactSub}>{copy.system.subtitle}</p>
+            <div className={styles.systemHeaderRow}>
+              <div>
+                <p className={styles.kicker}>{copy.system.kicker}</p>
+                <h1 className={styles.compactTitle}>{copy.system.title}</h1>
+                <p className={styles.compactSub}>{copy.system.subtitle}</p>
+              </div>
+              <img
+                src="/illustrations/design-system.jpg"
+                alt=""
+                width={136}
+                height={136}
+                className={styles.stampLg}
+              />
+            </div>
           </div>
 
           <div className={styles.systemBlock}>
@@ -506,9 +528,20 @@ function CaseStudiesList({
                 <span>{meta.role}</span>
               </div>
 
-              <div className={styles.cardBody}>
-                <h3 className={styles.cardTitle}>{meta.title}</h3>
-                <p className={styles.cardSummary}>{meta.summary}</p>
+              <div className={styles.cardMain}>
+                <div className={styles.cardBody}>
+                  <h3 className={styles.cardTitle}>{meta.title}</h3>
+                  <p className={styles.cardSummary}>{meta.summary}</p>
+                </div>
+                {meta.illustration && (
+                  <img
+                    src={meta.illustration}
+                    alt=""
+                    width={128}
+                    height={128}
+                    className={styles.cardIllust}
+                  />
+                )}
               </div>
 
               <div className={styles.cardFooter}>

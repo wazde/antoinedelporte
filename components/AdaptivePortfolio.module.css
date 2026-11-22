@@ -66,6 +66,29 @@
   margin-bottom: 2.25rem;
 }
 
+.wizardHeaderRow,
+.systemHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.stampLg {
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: 1.25rem;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: #eff1ed;
+  border: 1.5px solid var(--line);
+  box-shadow: 0 12px 28px -16px rgb(22 24 13 / 0.3);
+  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+.stampLg:hover {
+  transform: rotate(3deg) scale(1.03);
+}
+
 .wizardTitle {
   font-size: clamp(2.4rem, 5.2vw, 3.75rem);
   line-height: 1.04;
@@ -722,8 +745,30 @@
   opacity: 0.5;
 }
 
+.cardMain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.75rem;
+}
+
 .cardBody {
-  max-width: 46rem;
+  max-width: 44rem;
+  flex: 1;
+}
+
+.cardIllust {
+  width: 7.75rem;
+  height: 7.75rem;
+  border-radius: 1rem;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: #eff1ed;
+  border: 1px solid var(--line);
+  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+.card:hover .cardIllust {
+  transform: rotate(-3deg) scale(1.04);
 }
 
 .cardTitle {
@@ -783,6 +828,17 @@
 @media (max-width: 680px) {
   .wizardCard {
     padding: 1.5rem;
+  }
+  .wizardHeaderRow,
+  .systemHeaderRow,
+  .cardMain {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+  .stampLg,
+  .cardIllust {
+    width: 5.5rem;
+    height: 5.5rem;
   }
   .metaRow {
     grid-template-columns: 2rem 1fr;

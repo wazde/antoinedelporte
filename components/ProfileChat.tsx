@@ -136,6 +136,15 @@ export default function ProfileChat({
   return (
     <section className={styles.hero} aria-label={t.chat.ariaLabel}>
       <div className={styles.intro}>
+        <div className={styles.mascotWrap}>
+          <img
+            src="/illustrations/chat-bot.jpg"
+            alt=""
+            width={112}
+            height={112}
+            className={styles.mascot}
+          />
+        </div>
         <p className={styles.kicker}>{t.home.kicker}</p>
         <h1 className={styles.title}>
           {t.chat.heading}{" "}
