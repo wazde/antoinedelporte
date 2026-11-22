@@ -12,6 +12,8 @@ const WINDOW_MS = 60_000;
 const MAX_REQUESTS_PER_WINDOW = 15;
 const hits = new Map<string, { count: number; resetAt: number }>();
 
+let cachedDiscoveredModel: string | null = null;
+
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
   const entry = hits.get(ip);
@@ -29,16 +31,6 @@ async function callGemini(apiKey: string, model: string, messages: IncomingMessa
     parts: [{ text: String(m.content).slice(0, 800) }],
   }));
 
-  const generationConfig: Record<string, unknown> = {
-    temperature: 0.4,
-    maxOutputTokens: 600,
-  };
-
-  // Sur les modèles 2.5, on coupe le thinking budget pour des réponses rapides et éviter de vider maxOutputTokens
-  if (model.startsWith("gemini-2.5")) {
-    generationConfig.thinkingConfig = { thinkingBudget: 0 };
-  }
-
   const res = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`,
     {
@@ -47,7 +39,10 @@ async function callGemini(apiKey: string, model: string, messages: IncomingMessa
       body: JSON.stringify({
         system_instruction: { parts: [{ text: PUBLIC_PROFILE_CONTEXT }] },
         contents,
-        generationConfig,
+        generationConfig: {
+          temperature: 0.4,
+          maxOutputTokens: 1024,
+        },
       }),
     },
   );
@@ -76,6 +71,34 @@ async function callGemini(apiKey: string, model: string, messages: IncomingMessa
   return { text, reason: "ok" };
 }
 
+async function discoverFlashModel(apiKey: string): Promise<string | null> {
+  if (cachedDiscoveredModel) return cachedDiscoveredModel;
+  try {
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models?key=${encodeURIComponent(apiKey)}`,
+    );
+    if (!res.ok) return null;
+    const data = (await res.json()) as {
+      models?: Array<{ name?: string; supportedGenerationMethods?: string[] }>;
+    };
+    const match = data.models?.find(
+      (m) =>
+        m.name &&
+        m.name.includes("flash") &&
+        !m.name.includes("image") &&
+        !m.name.includes("audio") &&
+        m.supportedGenerationMethods?.includes("generateContent"),
+    );
+    if (match?.name) {
+      cachedDiscoveredModel = match.name.replace(/^models\//, "");
+      return cachedDiscoveredModel;
+    }
+  } catch {
+    // ignore
+  }
+  return null;
+}
+
 export async function POST(request: Request) {
   try {
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "local";
@@ -97,12 +120,18 @@ export async function POST(request: Request) {
 
     const question = lastUser.content.trim().slice(0, 500);
     const apiKey = process.env.GEMINI_API_KEY?.trim();
-    let fallbackReason = apiKey ? "unknown" : "no_key";
+    const reasons: string[] = [];
 
-    if (apiKey) {
+    if (!apiKey) {
+      reasons.push("no_key");
+    } else {
       const models = process.env.GEMINI_MODEL
         ? [process.env.GEMINI_MODEL.trim()]
-        : ["gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.0-flash"];
+        : ["gemini-2.5-flash", "gemini-flash-latest", "gemini-2.5-flash-lite"];
+
+      if (cachedDiscoveredModel && !models.includes(cachedDiscoveredModel)) {
+        models.unshift(cachedDiscoveredModel);
+      }
 
       for (const model of models) {
         const result = await callGemini(apiKey, model, messages);
@@ -115,7 +144,23 @@ export async function POST(request: Request) {
             model,
           });
         }
-        fallbackReason = `${model}:${result.reason}`;
+        reasons.push(`${model}:${result.reason}`);
+      }
+
+      // Dernier recours : découvrir automatiquement un modèle Flash actif sur cette clé
+      const discovered = await discoverFlashModel(apiKey);
+      if (discovered && !models.includes(discovered)) {
+        const result = await callGemini(apiKey, discovered, messages);
+        if (result.text) {
+          const local = answerLocally(question, lang);
+          return NextResponse.json({
+            reply: result.text,
+            links: local.links,
+            mode: "gemini",
+            model: discovered,
+          });
+        }
+        reasons.push(`${discovered}:${result.reason}`);
       }
     }
 
@@ -124,7 +169,7 @@ export async function POST(request: Request) {
       reply: local.reply,
       links: local.links,
       mode: "local",
-      reason: fallbackReason,
+      reason: reasons.join(", "),
     });
   } catch (err) {
     console.error("[chat] Unexpected error:", err);
