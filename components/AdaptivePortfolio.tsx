@@ -30,6 +30,7 @@ const COLOR_TOKENS = [
   { token: "--heading", name: "dark_khaki", light: "#373d20", dark: "#f1f2e8" },
   { token: "--muted", name: "dusty_olive", light: "#5b6037", dark: "#b3b985" },
   { token: "--accent", name: "ash_brown", light: "#766153", dark: "#b29e92" },
+  { token: "--amber", name: "golden_amber", light: "#b87414", dark: "#e2a43b" },
   { token: "--sage", name: "dry_sage", light: "#bcbd8b", dark: "#717744" },
 ];
 
@@ -274,20 +275,6 @@ export default function AdaptivePortfolio({
               {copy.views[id].label}
             </button>
           ))}
-        </div>
-
-        <div className={styles.barRight}>
-          <span className={styles.intentPill}>{intentData.short}</span>
-          <button
-            type="button"
-            onClick={() => {
-              setStep(0);
-              setShowWizard(true);
-            }}
-            className={styles.reconfigBtn}
-          >
-            {copy.bar.reconfigure} ↻
-          </button>
         </div>
       </div>
 

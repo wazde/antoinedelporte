@@ -187,13 +187,12 @@
 /* ---------- BARRE DE CONTRÔLE ADAPTATIVE ---------- */
 .controlBar {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  margin-top: 1.25rem;
-  padding: 0.65rem 0.9rem;
-  border-radius: 1.15rem;
+  justify-content: center;
+  width: fit-content;
+  margin: 1.25rem auto 0;
+  padding: 0.45rem;
+  border-radius: 999px;
   background: var(--glass-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -203,24 +202,24 @@
 .modeTabs {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
+  gap: 0.3rem;
 }
 
 .modeTab {
   background: transparent;
-  border: 1px solid var(--line);
+  border: 1px solid transparent;
   color: var(--muted);
   font: inherit;
   font-size: 0.82rem;
   font-weight: 500;
-  padding: 0.38rem 0.85rem;
+  padding: 0.4rem 0.95rem;
   border-radius: 999px;
   cursor: pointer;
   white-space: nowrap;
   transition: all 0.2s ease;
 }
 .modeTab:hover {
-  border-color: var(--accent);
+  border-color: var(--amber);
   color: var(--heading);
 }
 .modeTabActive {
@@ -229,39 +228,31 @@
   color: var(--bg);
 }
 .modeTabActive:hover {
+  border-color: var(--heading);
   color: var(--bg);
-}
-
-.barRight {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 0.8rem;
 }
 
 @media (max-width: 680px) {
   .controlBar {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 0.75rem;
-    border-radius: 1rem;
-    gap: 0.65rem;
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.95rem;
   }
   .modeTabs {
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.4rem;
   }
   .modeTab {
     text-align: center;
-    padding: 0.45rem 0.5rem;
+    padding: 0.48rem 0.5rem;
     font-size: 0.8rem;
     border-radius: 0.6rem;
+    border-color: var(--line);
   }
-  .barRight {
-    justify-content: space-between;
-    padding-top: 0.6rem;
-    border-top: 1px solid var(--line);
+  .modeTabActive {
+    border-color: var(--heading);
   }
 }
 
@@ -402,8 +393,9 @@
   border: 1px solid var(--heading);
 }
 .primaryCta:hover {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--amber);
+  border-color: var(--amber);
+  color: #16180d;
 }
 .secondaryCta {
   background: var(--bg-card);
@@ -640,7 +632,7 @@
 .archStep {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 0.75rem;
-  color: var(--accent);
+  color: var(--amber);
 }
 .archCard strong {
   color: var(--heading);
@@ -718,8 +710,8 @@
 .sectionCount {
   font-family: var(--font-serif), Georgia, serif;
   font-style: italic;
-  font-size: 1.1rem;
-  color: var(--accent);
+  font-size: 1.15rem;
+  color: var(--amber);
 }
 
 /* ---------- CARTES DOSSIER À ONGLET (USE CASES · ANIMATION FRAMER) ---------- */
@@ -760,8 +752,8 @@
   --folder-sheet: #eff1ed;
   --folder-fg: #16180d;
   --folder-muted: #5b6037;
-  --folder-accent: #766153;
-  --folder-glow: radial-gradient(110% 85% at 20% 20%, #b29e92 0%, #766153 50%, #373d20 100%);
+  --folder-accent: #b87414;
+  --folder-glow: radial-gradient(115% 85% at 22% 18%, #e2a43b 0%, #987e6d 42%, #373d20 100%);
   --folder-doodle: #f6f7f5;
 }
 
@@ -770,7 +762,7 @@
   --folder-sheet: #171311;
   --folder-fg: #f1f2e8;
   --folder-muted: #b29e92;
-  --folder-accent: #e5dfdb;
+  --folder-accent: #e2a43b;
   --folder-glow: radial-gradient(110% 85% at 50% 20%, #d6d7b9 0%, #717744 55%, #2c3019 100%);
   --folder-doodle: #16180d;
 }
@@ -872,6 +864,7 @@
 
 .folderCard:hover .folderArrow,
 .folderCard:focus-visible .folderArrow {
+  color: var(--amber);
   transform: translate(3px, -3px);
 }
 

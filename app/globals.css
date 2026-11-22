@@ -16,6 +16,8 @@
   --line: #c0c7b8;
   --accent: #766153;
   --accent-soft: #e5dfdb;
+  --amber: #b87414;
+  --amber-soft: #f5e6c8;
   --sage: #bcbd8b;
 
   /* Dégradé atmosphérique haut & bas + verre dépoli */
@@ -41,6 +43,8 @@
   --line: #444829;
   --accent: #b29e92;
   --accent-soft: #2f2621;
+  --amber: #e2a43b;
+  --amber-soft: #3a2b12;
   --sage: #717744;
 
   --atmo-top-1: #373d20;
@@ -121,8 +125,8 @@ a {
 }
 
 ::selection {
-  background: var(--accent);
-  color: #eff1ed;
+  background: var(--amber);
+  color: #16180d;
 }
 
 .container {
@@ -139,12 +143,12 @@ a {
 /* Lien avec soulignement éditorial fin */
 .link {
   text-decoration: none;
-  background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 1px no-repeat;
+  background: linear-gradient(var(--amber), var(--amber)) 0 100% / 0 1.5px no-repeat;
   transition: background-size 0.25s ease, color 0.2s ease;
 }
 .link:hover {
-  color: var(--accent);
-  background-size: 100% 1px;
+  color: var(--amber);
+  background-size: 100% 1.5px;
 }
 
 /* Accessibilité : on coupe les animations si l'utilisateur le demande */
