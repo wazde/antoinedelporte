@@ -21,17 +21,17 @@
   --amber-soft: #f5e6c8;
   --sage: #bcbd8b;
 
-  /* Dégradé atmosphérique haut & bas + verre dépoli */
-  --atmo-top-1: #4b522c;
-  --atmo-top-2: #717744;
-  --atmo-top-3: #bcbd8b;
-  --atmo-top-4: #d6d7b9;
+  /* Dégradé horizon Bayshore : olive profond -> brume sauge -> horizon chaud ambre/sable -> white_smoke */
+  --atmo-top-1: #373d20;
+  --atmo-top-2: #5b6037;
+  --atmo-top-3: #9a9f86;
+  --atmo-horizon: #dfd0b2;
   --hero-on-atmo: #f6f7f5;
-  --hero-muted-on-atmo: #e6e8d6;
+  --hero-muted-on-atmo: #edf0e6;
   --glass-bg: rgb(246 247 245 / 0.84);
   --glass-ring: rgb(246 247 245 / 0.28);
   --glass-border: rgb(255 255 255 / 0.55);
-  --grain-opacity: 0.22;
+  --grain-opacity: 0.16;
 }
 
 [data-theme="dark"] {
@@ -49,16 +49,16 @@
   --amber-soft: #3a2b12;
   --sage: #717744;
 
-  --atmo-top-1: #373d20;
-  --atmo-top-2: #4b522c;
-  --atmo-top-3: #2c3019;
-  --atmo-top-4: #1f2212;
-  --hero-on-atmo: #f1f2e8;
-  --hero-muted-on-atmo: #ccd0ad;
+  --atmo-top-1: #232714;
+  --atmo-top-2: #373d20;
+  --atmo-top-3: #3a3726;
+  --atmo-horizon: #3d311d;
+  --hero-on-atmo: #f6f7f5;
+  --hero-muted-on-atmo: #d6d9c8;
   --glass-bg: rgb(33 36 19 / 0.82);
   --glass-ring: rgb(188 189 139 / 0.14);
   --glass-border: rgb(188 189 139 / 0.24);
-  --grain-opacity: 0.18;
+  --grain-opacity: 0.14;
 }
 
 /* Easter egg discret : bascule en édition sépia inversée */
@@ -83,11 +83,16 @@ body {
   min-height: 100vh;
   background-color: var(--bg);
   background-image:
-    radial-gradient(45% 260px at 86% 0%, rgb(232 173 66 / 0.1) 0%, transparent 70%),
-    radial-gradient(110% 520px at 50% 0%, var(--atmo-top-1) 0%, var(--atmo-top-2) 34%, var(--atmo-top-3) 68%, transparent 100%),
-    linear-gradient(180deg, var(--atmo-top-2) 0px, var(--atmo-top-3) 420px, var(--atmo-top-4) 640px, var(--bg) 820px);
+    linear-gradient(
+      180deg,
+      var(--atmo-top-1) 0px,
+      var(--atmo-top-2) 220px,
+      var(--atmo-top-3) 440px,
+      var(--atmo-horizon) 620px,
+      var(--bg) 780px
+    );
   background-repeat: no-repeat;
-  background-size: 100% 860px;
+  background-size: 100% 800px;
   color: var(--fg);
   font-family: var(--font-sans), system-ui, sans-serif;
   line-height: 1.65;

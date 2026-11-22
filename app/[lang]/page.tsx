@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { dictionaries, type Locale } from "@/lib/i18n";
 import { getProjects } from "@/lib/projects";
-import { site } from "@/lib/site";
 import CyclingTitle from "@/components/CyclingTitle";
 import styles from "./page.module.css";
 
@@ -13,40 +12,13 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
 
   return (
     <div className="container">
-      {/* HÉRO ÉDITORIAL EN GRILLE MAGAZINE */}
+      {/* HÉRO ARCHITECTURAL CENTRÉ (style Bayshore) */}
       <section className={styles.hero}>
-        <div className={styles.metaBar}>
-          <span className={styles.metaLeft}>
-            <span className={styles.amberDot} aria-hidden />
-            {t.home.kicker}
-          </span>
-          <span className={styles.metaRight}>{t.home.metaRight}</span>
-        </div>
-
         <CyclingTitle prefix={t.home.heroPrefix} facets={t.home.heroFacets} />
-
-        <div className={styles.heroGrid}>
-          <dl className={styles.facts}>
-            {t.home.facts.map((f) => (
-              <div key={f.k} className={styles.factRow}>
-                <dt>{f.k}</dt>
-                <dd>{f.v}</dd>
-              </div>
-            ))}
-          </dl>
-
-          <div className={styles.introCol}>
-            <p className={styles.intro}>{t.home.intro}</p>
-            <div className={styles.heroActions}>
-              <a href="#work" className={styles.primaryCta}>
-                {t.home.ctaWork} <span aria-hidden>↓</span>
-              </a>
-              <a href={site.cv[lang]} download className={styles.secondaryCta}>
-                {t.footer.cv} <span aria-hidden>↓</span>
-              </a>
-            </div>
-          </div>
-        </div>
+        <p className={styles.intro}>{t.home.intro}</p>
+        <a href="#work" className={styles.primaryCta}>
+          {t.home.ctaWork}
+        </a>
       </section>
 
       {/* 3 PILIERS EN GRILLE ÉDITORIALE OUVERTE (FILETS FINS) */}
