@@ -13,7 +13,6 @@ import {
   type VisitorIntent,
 } from "@/lib/adaptive";
 import { site } from "@/lib/site";
-import { MagnifierDoodle, NodesDoodle, PencilDoodle, SparkDoodle } from "./Doodles";
 import ProfileChat from "./ProfileChat";
 import styles from "./AdaptivePortfolio.module.css";
 
@@ -167,16 +166,11 @@ export default function AdaptivePortfolio({
             </div>
 
             <div className={styles.wizardHeader}>
-              <div className={styles.wizardHeaderRow}>
-                <div>
-                  <p className={styles.kicker}>{copy.wizard.kicker}</p>
-                  <h1 className={styles.wizardTitle}>
-                    {copy.wizard.title} <em>{copy.wizard.titleItalic}</em>
-                  </h1>
-                  <p className={styles.wizardSubtitle}>{copy.wizard.subtitle}</p>
-                </div>
-                <SparkDoodle className={styles.doodleAccent} />
-              </div>
+              <p className={styles.kicker}>{copy.wizard.kicker}</p>
+              <h1 className={styles.wizardTitle}>
+                {copy.wizard.title} <em>{copy.wizard.titleItalic}</em>
+              </h1>
+              <p className={styles.wizardSubtitle}>{copy.wizard.subtitle}</p>
             </div>
 
             <div className={styles.wizardBody}>
@@ -403,14 +397,9 @@ export default function AdaptivePortfolio({
       {prefs.view === "system" && (
         <section className={styles.systemSection}>
           <div className={styles.systemHeader}>
-            <div className={styles.systemHeaderRow}>
-              <div>
-                <p className={styles.kicker}>{copy.system.kicker}</p>
-                <h1 className={styles.compactTitle}>{copy.system.title}</h1>
-                <p className={styles.compactSub}>{copy.system.subtitle}</p>
-              </div>
-              <PencilDoodle className={styles.doodleAccent} />
-            </div>
+            <p className={styles.kicker}>{copy.system.kicker}</p>
+            <h1 className={styles.compactTitle}>{copy.system.title}</h1>
+            <p className={styles.compactSub}>{copy.system.subtitle}</p>
           </div>
 
           <div className={styles.systemBlock}>
@@ -500,7 +489,6 @@ function CaseStudiesList({
   projects: ProjectSummary[];
 }) {
   const variants = [styles.folderDark, styles.folderLight, styles.folderDeep];
-  const doodles = [PencilDoodle, MagnifierDoodle, NodesDoodle];
 
   return (
     <section id="work" className={styles.workSection}>
@@ -512,16 +500,13 @@ function CaseStudiesList({
       <ul className={styles.folderGrid}>
         {projects.map(({ slug, meta }, index) => {
           const variant = variants[index % variants.length];
-          const Doodle = doodles[index % doodles.length];
           return (
             <li key={slug}>
               <Link
                 href={`/${lang}/work/${slug}`}
                 className={`${styles.folderCard} ${variant}`}
               >
-                <div className={styles.folderBackdrop}>
-                  <Doodle className={styles.folderDoodle} />
-                </div>
+                <div className={styles.folderBackdrop} />
 
                 <div className={styles.folderFlap}>
                   <svg

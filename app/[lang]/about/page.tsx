@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { dictionaries, isLocale, type Locale } from "@/lib/i18n";
-import { MagnifierDoodle } from "@/components/Doodles";
 import styles from "./about.module.css";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -14,13 +13,8 @@ export default async function About({ params }: { params: Promise<{ lang: string
 
   return (
     <div className={`container ${styles.about}`}>
-      <div className={styles.heroRow}>
-        <div>
-          <p className={styles.kicker}>{t.about.kicker}</p>
-          <h1 className={styles.title}>{t.about.title}</h1>
-        </div>
-        <MagnifierDoodle className={styles.doodle} />
-      </div>
+      <p className={styles.kicker}>{t.about.kicker}</p>
+      <h1 className={styles.title}>{t.about.title}</h1>
       <p className={styles.lead}>{t.about.lead}</p>
 
       <div className={styles.prose}>
