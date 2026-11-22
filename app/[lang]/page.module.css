@@ -34,13 +34,16 @@
   margin: 0 0 3.25rem;
 }
 
+.pillarsSection {
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
 .pillars {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
   gap: 1.75rem;
   margin: 0;
-  padding-top: 2rem;
-  border-top: 1px solid var(--line);
 }
 
 .pillar dt {

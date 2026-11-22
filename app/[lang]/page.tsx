@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { dictionaries, type Locale } from "@/lib/i18n";
 import { getProjects } from "@/lib/projects";
+import ProfileChat from "@/components/ProfileChat";
 import styles from "./page.module.css";
 
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
@@ -10,13 +11,9 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
 
   return (
     <div className="container">
-      <section className={styles.hero}>
-        <p className={styles.kicker}>{t.home.kicker}</p>
-        <h1 className={styles.title}>
-          {t.home.title} <em>{t.home.titleItalic}</em>
-        </h1>
-        <p className={styles.intro}>{t.home.intro}</p>
+      <ProfileChat lang={lang} t={t} />
 
+      <section className={styles.pillarsSection} aria-label="Principes">
         <dl className={styles.pillars}>
           {t.home.pillars.map((p) => (
             <div key={p.label} className={styles.pillar}>
