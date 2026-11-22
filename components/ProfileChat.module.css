@@ -35,6 +35,21 @@
   color: var(--hero-on-atmo);
 }
 
+.cyclingFacet {
+  display: inline-block;
+  background: linear-gradient(180deg, #ffffff 15%, #e6e8d6 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+  transition: opacity 0.36s ease, filter 0.36s ease, transform 0.36s ease;
+  will-change: opacity, filter, transform;
+}
+
+.cyclingFacetOut {
+  opacity: 0;
+  filter: blur(7px);
+  transform: translateY(6px);
+}
+
 .subtitle {
   font-size: 1.02rem;
   color: var(--hero-muted-on-atmo);

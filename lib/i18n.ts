@@ -35,6 +35,11 @@ const fr = {
     ariaLabel: "Discussion sur le profil d'Antoine Delporte",
     heading: "Posez une question sur",
     headingItalic: "Antoine Delporte.",
+    headingFacets: [
+      "Antoine Delporte.",
+      "ses Design Systems.",
+      "son approche IA & MCP.",
+    ],
     subtitle:
       "Lead Product Designer spécialisé en Design Systems & Design Ops augmentée par l'IA. Explorez son parcours via cette discussion, ou parcourez ses études de cas juste en dessous.",
     placeholder: "Ex : Comment utilise-t-il l'IA et les serveurs MCP en design ?",
@@ -106,6 +111,11 @@ const en: typeof fr = {
     ariaLabel: "Chat about Antoine Delporte's profile",
     heading: "Ask anything about",
     headingItalic: "Antoine Delporte.",
+    headingFacets: [
+      "Antoine Delporte.",
+      "his Design Systems.",
+      "his AI & MCP workflow.",
+    ],
     subtitle:
       "Lead Product Designer focused on Design Systems & AI-augmented Design Ops. Explore his background through this chat, or scroll down to read the case studies.",
     placeholder: "e.g. How does he use AI and MCP servers in Design Ops?",

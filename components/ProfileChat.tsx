@@ -46,7 +46,30 @@ export default function ProfileChat({
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [mode, setMode] = useState<"live" | "local" | null>(null);
+  const [facetIdx, setFacetIdx] = useState(0);
+  const [fading, setFading] = useState(false);
   const threadRef = useRef<HTMLDivElement>(null);
+
+  const facets = t.chat.headingFacets;
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    const intervalId = setInterval(() => {
+      setFading(true);
+      timeoutId = setTimeout(() => {
+        setFacetIdx((prev) => (prev + 1) % facets.length);
+        setFading(false);
+      }, 360);
+    }, 2800);
+
+    return () => {
+      clearInterval(intervalId);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [facets.length]);
 
   useEffect(() => {
     if (threadRef.current) {
@@ -115,7 +138,10 @@ export default function ProfileChat({
       <div className={styles.intro}>
         <p className={styles.kicker}>{t.home.kicker}</p>
         <h1 className={styles.title}>
-          {t.chat.heading} <em>{t.chat.headingItalic}</em>
+          {t.chat.heading}{" "}
+          <em className={`${styles.cyclingFacet} ${fading ? styles.cyclingFacetOut : ""}`}>
+            {facets[facetIdx]}
+          </em>
         </h1>
         <p className={styles.subtitle}>{customSubtitle || t.chat.subtitle}</p>
       </div>
