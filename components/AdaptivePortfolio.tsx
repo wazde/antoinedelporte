@@ -13,6 +13,7 @@ import {
   type VisitorIntent,
 } from "@/lib/adaptive";
 import { site } from "@/lib/site";
+import { MagnifierDoodle, NodesDoodle, PencilDoodle, SparkDoodle } from "./Doodles";
 import ProfileChat from "./ProfileChat";
 import styles from "./AdaptivePortfolio.module.css";
 
@@ -174,13 +175,7 @@ export default function AdaptivePortfolio({
                   </h1>
                   <p className={styles.wizardSubtitle}>{copy.wizard.subtitle}</p>
                 </div>
-                <img
-                  src="/illustrations/chat-bot.jpg"
-                  alt=""
-                  width={120}
-                  height={120}
-                  className={styles.stampLg}
-                />
+                <SparkDoodle className={styles.doodleAccent} />
               </div>
             </div>
 
@@ -414,13 +409,7 @@ export default function AdaptivePortfolio({
                 <h1 className={styles.compactTitle}>{copy.system.title}</h1>
                 <p className={styles.compactSub}>{copy.system.subtitle}</p>
               </div>
-              <img
-                src="/illustrations/design-system.jpg"
-                alt=""
-                width={136}
-                height={136}
-                className={styles.stampLg}
-              />
+              <PencilDoodle className={styles.doodleAccent} />
             </div>
           </div>
 
@@ -511,6 +500,7 @@ function CaseStudiesList({
   projects: ProjectSummary[];
 }) {
   const variants = [styles.folderDark, styles.folderLight, styles.folderDeep];
+  const doodles = [PencilDoodle, MagnifierDoodle, NodesDoodle];
 
   return (
     <section id="work" className={styles.workSection}>
@@ -522,6 +512,7 @@ function CaseStudiesList({
       <ul className={styles.folderGrid}>
         {projects.map(({ slug, meta }, index) => {
           const variant = variants[index % variants.length];
+          const Doodle = doodles[index % doodles.length];
           const isTallPreview = index % 3 === 2;
           return (
             <li key={slug}>
@@ -530,13 +521,7 @@ function CaseStudiesList({
                 className={`${styles.folderCard} ${variant} ${isTallPreview ? styles.folderTallPreview : ""}`}
               >
                 <div className={styles.folderBackdrop}>
-                  {meta.illustration && (
-                    <img
-                      src={meta.illustration}
-                      alt=""
-                      className={styles.folderIllust}
-                    />
-                  )}
+                  <Doodle className={styles.folderDoodle} />
                 </div>
 
                 <div className={styles.folderFlap}>

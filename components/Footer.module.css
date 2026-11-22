@@ -16,20 +16,16 @@
   flex-wrap: wrap;
 }
 
-.footerStamp {
-  width: 6.75rem;
-  height: 6.75rem;
-  border-radius: 1.35rem;
-  object-fit: cover;
-  background: #eff1ed;
-  border: 2px solid rgb(246 247 245 / 0.55);
-  box-shadow:
-    0 0 0 8px rgb(246 247 245 / 0.16),
-    0 18px 36px -14px rgb(11 12 6 / 0.45);
-  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.2, 1);
+.footerDoodle {
+  width: 4.25rem;
+  height: 4.25rem;
+  color: rgb(246 247 245 / 0.35);
+  flex-shrink: 0;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
-.footerStamp:hover {
-  transform: translateY(-4px) rotate(4deg);
+.footerDoodle:hover {
+  color: rgb(246 247 245 / 0.65);
+  transform: rotate(-10deg) scale(1.06);
 }
 
 .contact {

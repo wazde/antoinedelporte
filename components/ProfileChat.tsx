@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { Dictionary, Locale } from "@/lib/i18n";
 import type { ChatLink } from "@/lib/profile-knowledge";
+import { SparkDoodle } from "./Doodles";
 import styles from "./ProfileChat.module.css";
 
 type Message = {
@@ -136,15 +137,7 @@ export default function ProfileChat({
   return (
     <section className={styles.hero} aria-label={t.chat.ariaLabel}>
       <div className={styles.intro}>
-        <div className={styles.mascotWrap}>
-          <img
-            src="/illustrations/chat-bot.jpg"
-            alt=""
-            width={112}
-            height={112}
-            className={styles.mascot}
-          />
-        </div>
+        <SparkDoodle className={styles.heroDoodle} />
         <p className={styles.kicker}>{t.home.kicker}</p>
         <h1 className={styles.title}>
           {t.chat.heading}{" "}

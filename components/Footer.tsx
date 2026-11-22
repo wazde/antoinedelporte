@@ -1,5 +1,6 @@
 import type { Dictionary, Locale } from "@/lib/i18n";
 import { site } from "@/lib/site";
+import { MagnifierDoodle } from "./Doodles";
 import styles from "./Footer.module.css";
 
 export default function Footer({ lang, t }: { lang: Locale; t: Dictionary }) {
@@ -13,13 +14,7 @@ export default function Footer({ lang, t }: { lang: Locale; t: Dictionary }) {
               {site.email}
             </a>
           </div>
-          <img
-            src="/illustrations/discovery.jpg"
-            alt=""
-            width={112}
-            height={112}
-            className={styles.footerStamp}
-          />
+          <MagnifierDoodle className={styles.footerDoodle} />
         </div>
 
         <div className={styles.bottom}>
