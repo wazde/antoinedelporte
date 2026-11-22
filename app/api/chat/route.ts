@@ -23,6 +23,59 @@ function isRateLimited(ip: string): boolean {
   return entry.count > MAX_REQUESTS_PER_WINDOW;
 }
 
+async function callGemini(apiKey: string, model: string, messages: IncomingMessage[]) {
+  const contents = messages.map((m) => ({
+    role: m.role === "assistant" ? "model" : "user",
+    parts: [{ text: String(m.content).slice(0, 800) }],
+  }));
+
+  const generationConfig: Record<string, unknown> = {
+    temperature: 0.4,
+    maxOutputTokens: 600,
+  };
+
+  // Sur les modèles 2.5, on coupe le thinking budget pour des réponses rapides et éviter de vider maxOutputTokens
+  if (model.startsWith("gemini-2.5")) {
+    generationConfig.thinkingConfig = { thinkingBudget: 0 };
+  }
+
+  const res = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        system_instruction: { parts: [{ text: PUBLIC_PROFILE_CONTEXT }] },
+        contents,
+        generationConfig,
+      }),
+    },
+  );
+
+  if (!res.ok) {
+    const errText = await res.text().catch(() => "");
+    console.error(`[chat] Gemini ${model} HTTP ${res.status}:`, errText.slice(0, 300));
+    return { text: null, reason: `http_${res.status}` };
+  }
+
+  const data = (await res.json()) as {
+    candidates?: Array<{ content?: { parts?: Array<{ text?: string; thought?: boolean }> } }>;
+  };
+
+  const text = data.candidates?.[0]?.content?.parts
+    ?.filter((p) => !p.thought && typeof p.text === "string")
+    .map((p) => p.text ?? "")
+    .join("")
+    .trim();
+
+  if (!text) {
+    console.error(`[chat] Gemini ${model} returned empty text`);
+    return { text: null, reason: "empty_text" };
+  }
+
+  return { text, reason: "ok" };
+}
+
 export async function POST(request: Request) {
   try {
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "local";
@@ -43,61 +96,38 @@ export async function POST(request: Request) {
     }
 
     const question = lastUser.content.trim().slice(0, 500);
-    const apiKey = process.env.GEMINI_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY?.trim();
+    let fallbackReason = apiKey ? "unknown" : "no_key";
 
-    // Si une clé Gemini est configurée sur Vercel (ou .env.local), on appelle le vrai LLM
     if (apiKey) {
-      const model = process.env.GEMINI_MODEL || "gemini-2.5-flash";
-      const contents = messages.map((m) => ({
-        role: m.role === "assistant" ? "model" : "user",
-        parts: [{ text: String(m.content).slice(0, 800) }],
-      }));
+      const models = process.env.GEMINI_MODEL
+        ? [process.env.GEMINI_MODEL.trim()]
+        : ["gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.0-flash"];
 
-      const res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(apiKey)}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            system_instruction: { parts: [{ text: PUBLIC_PROFILE_CONTEXT }] },
-            contents,
-            generationConfig: {
-              temperature: 0.4,
-              maxOutputTokens: 320,
-            },
-          }),
-        },
-      );
-
-      if (res.ok) {
-        const data = (await res.json()) as {
-          candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }>;
-        };
-        const text = data.candidates?.[0]?.content?.parts
-          ?.map((p) => p.text ?? "")
-          .join("")
-          .trim();
-
-        if (text) {
-          // On réutilise les liens contextuels pertinents du matcher local si trouvés
+      for (const model of models) {
+        const result = await callGemini(apiKey, model, messages);
+        if (result.text) {
           const local = answerLocally(question, lang);
           return NextResponse.json({
-            reply: text,
+            reply: result.text,
             links: local.links,
             mode: "gemini",
+            model,
           });
         }
+        fallbackReason = `${model}:${result.reason}`;
       }
     }
 
-    // Fallback instantané sans erreur si pas de clé ou quota atteint
     const local = answerLocally(question, lang);
     return NextResponse.json({
       reply: local.reply,
       links: local.links,
       mode: "local",
+      reason: fallbackReason,
     });
-  } catch {
+  } catch (err) {
+    console.error("[chat] Unexpected error:", err);
     return NextResponse.json(
       { error: "Impossible de répondre pour le moment." },
       { status: 500 },
