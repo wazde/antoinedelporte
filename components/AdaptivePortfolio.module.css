@@ -3,11 +3,11 @@
 }
 
 .kicker {
-  color: var(--accent);
+  color: var(--amber);
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  font-weight: 500;
+  font-weight: 600;
   margin: 0 0 0.85rem;
 }
 
@@ -296,7 +296,9 @@
 }
 .editorialTitle em {
   font-style: italic;
-  color: var(--hero-on-atmo);
+  background: linear-gradient(180deg, #fff6df 10%, #f0bd5e 100%);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
 .editorialIntro {
@@ -323,7 +325,7 @@
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--accent);
+  color: var(--amber);
   font-weight: 600;
   margin-bottom: 0.45rem;
 }
@@ -388,13 +390,14 @@
   transition: all 0.2s ease;
 }
 .primaryCta {
-  background: var(--heading);
-  color: var(--bg);
-  border: 1px solid var(--heading);
+  background: var(--amber);
+  color: #16180d;
+  border: 1px solid var(--amber);
+  font-weight: 600;
 }
 .primaryCta:hover {
-  background: var(--amber);
-  border-color: var(--amber);
+  background: var(--amber-bright);
+  border-color: var(--amber-bright);
   color: #16180d;
 }
 .secondaryCta {
@@ -424,7 +427,8 @@
   font-size: 0.74rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--accent);
+  color: var(--amber);
+  font-weight: 600;
   margin-bottom: 0.35rem;
 }
 .factCell dd {
@@ -736,14 +740,14 @@
   box-shadow: 0 18px 40px -24px rgb(22 24 13 / 0.35);
 }
 
-/* 3 variantes tonales fidèles à la palette d'Antoine */
+/* 3 variantes tonales fidèles à la palette d'Antoine + touche golden amber */
 .folderDark {
   --folder-frame: #16180d;
   --folder-sheet: #212413;
   --folder-fg: #eff1ed;
   --folder-muted: #b3b985;
-  --folder-accent: #d6d7b9;
-  --folder-glow: radial-gradient(110% 85% at 75% 15%, #99a85b 0%, #5b6037 52%, #2c3019 100%);
+  --folder-accent: #e8ad42;
+  --folder-glow: radial-gradient(110% 85% at 75% 15%, #e8ad42 0%, #717744 48%, #2c3019 100%);
   --folder-doodle: #eff1ed;
 }
 
@@ -752,8 +756,8 @@
   --folder-sheet: #eff1ed;
   --folder-fg: #16180d;
   --folder-muted: #5b6037;
-  --folder-accent: #b87414;
-  --folder-glow: radial-gradient(115% 85% at 22% 18%, #e2a43b 0%, #987e6d 42%, #373d20 100%);
+  --folder-accent: #c47d12;
+  --folder-glow: radial-gradient(115% 85% at 22% 18%, #e8ad42 0%, #987e6d 42%, #373d20 100%);
   --folder-doodle: #f6f7f5;
 }
 
@@ -762,8 +766,8 @@
   --folder-sheet: #171311;
   --folder-fg: #f1f2e8;
   --folder-muted: #b29e92;
-  --folder-accent: #e2a43b;
-  --folder-glow: radial-gradient(110% 85% at 50% 20%, #d6d7b9 0%, #717744 55%, #2c3019 100%);
+  --folder-accent: #e8ad42;
+  --folder-glow: radial-gradient(110% 85% at 50% 20%, #f0bd5e 0%, #766153 50%, #2c3019 100%);
   --folder-doodle: #16180d;
 }
 

@@ -16,7 +16,8 @@
   --line: #c0c7b8;
   --accent: #766153;
   --accent-soft: #e5dfdb;
-  --amber: #b87414;
+  --amber: #c47d12;
+  --amber-bright: #e8ad42;
   --amber-soft: #f5e6c8;
   --sage: #bcbd8b;
 
@@ -43,7 +44,8 @@
   --line: #444829;
   --accent: #b29e92;
   --accent-soft: #2f2621;
-  --amber: #e2a43b;
+  --amber: #e8ad42;
+  --amber-bright: #f2c36b;
   --amber-soft: #3a2b12;
   --sage: #717744;
 
@@ -81,6 +83,7 @@ body {
   min-height: 100vh;
   background-color: var(--bg);
   background-image:
+    radial-gradient(55% 360px at 82% 0%, rgb(232 173 66 / 0.28) 0%, transparent 70%),
     radial-gradient(110% 520px at 50% 0%, var(--atmo-top-1) 0%, var(--atmo-top-2) 34%, var(--atmo-top-3) 68%, transparent 100%),
     linear-gradient(180deg, var(--atmo-top-2) 0px, var(--atmo-top-3) 420px, var(--atmo-top-4) 640px, var(--bg) 820px);
   background-repeat: no-repeat;

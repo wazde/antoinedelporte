@@ -37,7 +37,7 @@
 
 .cyclingFacet {
   display: inline-block;
-  background: linear-gradient(180deg, #ffffff 15%, #e6e8d6 100%);
+  background: linear-gradient(180deg, #fff6df 10%, #f0bd5e 100%);
   -webkit-background-clip: text;
   color: transparent;
   transition: opacity 0.36s ease, filter 0.36s ease, transform 0.36s ease;
@@ -259,21 +259,21 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.6rem 1.05rem;
+  padding: 0.6rem 1.1rem;
   border-radius: 0.6rem;
-  border: 1px solid var(--heading);
-  background: var(--heading);
-  color: var(--bg);
+  border: 1px solid var(--amber);
+  background: var(--amber);
+  color: #16180d;
   font: inherit;
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  transition: opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
 }
 .sendButton:hover:not(:disabled) {
-  background: var(--amber);
-  border-color: var(--amber);
-  color: #16180d;
+  background: var(--amber-bright);
+  border-color: var(--amber-bright);
+  transform: translateY(-1px);
 }
 .sendButton:disabled {
   opacity: 0.4;
