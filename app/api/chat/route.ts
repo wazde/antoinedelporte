@@ -7,7 +7,7 @@ type IncomingMessage = {
   content: string;
 };
 
-// Rate limit simple en mémoire par IP (protège le quota gratuit Gemini)
+// Rate limit simple en mémoire par IP (protège le quota gratuit)
 const WINDOW_MS = 60_000;
 const MAX_REQUESTS_PER_WINDOW = 15;
 const hits = new Map<string, { count: number; resetAt: number }>();
@@ -23,6 +23,42 @@ function isRateLimited(ip: string): boolean {
   }
   entry.count += 1;
   return entry.count > MAX_REQUESTS_PER_WINDOW;
+}
+
+async function callGroq(apiKey: string, model: string, messages: IncomingMessage[]) {
+  const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model,
+      temperature: 0.4,
+      max_tokens: 500,
+      messages: [
+        { role: "system", content: PUBLIC_PROFILE_CONTEXT },
+        ...messages.map((m) => ({
+          role: m.role,
+          content: String(m.content).slice(0, 800),
+        })),
+      ],
+    }),
+  });
+
+  if (!res.ok) {
+    const errText = await res.text().catch(() => "");
+    console.error(`[chat] Groq ${model} HTTP ${res.status}:`, errText.slice(0, 300));
+    return { text: null, reason: `http_${res.status}` };
+  }
+
+  const data = (await res.json()) as {
+    choices?: Array<{ message?: { content?: string } }>;
+  };
+
+  const text = data.choices?.[0]?.message?.content?.trim();
+  if (!text) return { text: null, reason: "empty_text" };
+  return { text, reason: "ok" };
 }
 
 async function callGemini(apiKey: string, model: string, messages: IncomingMessage[]) {
@@ -63,11 +99,7 @@ async function callGemini(apiKey: string, model: string, messages: IncomingMessa
     .join("")
     .trim();
 
-  if (!text) {
-    console.error(`[chat] Gemini ${model} returned empty text`);
-    return { text: null, reason: "empty_text" };
-  }
-
+  if (!text) return { text: null, reason: "empty_text" };
   return { text, reason: "ok" };
 }
 
@@ -119,12 +151,34 @@ export async function POST(request: Request) {
     }
 
     const question = lastUser.content.trim().slice(0, 500);
-    const apiKey = process.env.GEMINI_API_KEY?.trim();
     const reasons: string[] = [];
 
-    if (!apiKey) {
-      reasons.push("no_key");
-    } else {
+    // 1. Groq (gratuit sans CB : ajoute GROQ_API_KEY sur Vercel)
+    const groqKey = process.env.GROQ_API_KEY?.trim();
+    if (groqKey) {
+      const groqModels = process.env.GROQ_MODEL
+        ? [process.env.GROQ_MODEL.trim()]
+        : ["llama-3.3-70b-versatile", "llama-3.1-8b-instant"];
+
+      for (const model of groqModels) {
+        const result = await callGroq(groqKey, model, messages);
+        if (result.text) {
+          const local = answerLocally(question, lang);
+          return NextResponse.json({
+            reply: result.text,
+            links: local.links,
+            mode: "live",
+            provider: "groq",
+            model,
+          });
+        }
+        reasons.push(`groq:${model}:${result.reason}`);
+      }
+    }
+
+    // 2. Gemini (si GEMINI_API_KEY est configurée avec facturation)
+    const geminiKey = process.env.GEMINI_API_KEY?.trim();
+    if (geminiKey) {
       const models = process.env.GEMINI_MODEL
         ? [process.env.GEMINI_MODEL.trim()]
         : ["gemini-2.5-flash", "gemini-flash-latest", "gemini-2.5-flash-lite"];
@@ -134,36 +188,40 @@ export async function POST(request: Request) {
       }
 
       for (const model of models) {
-        const result = await callGemini(apiKey, model, messages);
+        const result = await callGemini(geminiKey, model, messages);
         if (result.text) {
           const local = answerLocally(question, lang);
           return NextResponse.json({
             reply: result.text,
             links: local.links,
-            mode: "gemini",
+            mode: "live",
+            provider: "gemini",
             model,
           });
         }
-        reasons.push(`${model}:${result.reason}`);
+        reasons.push(`gemini:${model}:${result.reason}`);
       }
 
-      // Dernier recours : découvrir automatiquement un modèle Flash actif sur cette clé
-      const discovered = await discoverFlashModel(apiKey);
+      const discovered = await discoverFlashModel(geminiKey);
       if (discovered && !models.includes(discovered)) {
-        const result = await callGemini(apiKey, discovered, messages);
+        const result = await callGemini(geminiKey, discovered, messages);
         if (result.text) {
           const local = answerLocally(question, lang);
           return NextResponse.json({
             reply: result.text,
             links: local.links,
-            mode: "gemini",
+            mode: "live",
+            provider: "gemini",
             model: discovered,
           });
         }
-        reasons.push(`${discovered}:${result.reason}`);
+        reasons.push(`gemini:${discovered}:${result.reason}`);
       }
     }
 
+    if (!groqKey && !geminiKey) reasons.push("no_key");
+
+    // 3. Fallback local instantané
     const local = answerLocally(question, lang);
     return NextResponse.json({
       reply: local.reply,

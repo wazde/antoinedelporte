@@ -35,7 +35,7 @@ export default function ProfileChat({ lang, t }: { lang: Locale; t: Dictionary }
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const [mode, setMode] = useState<"gemini" | "local" | null>(null);
+  const [mode, setMode] = useState<"live" | "local" | null>(null);
   const threadRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -67,7 +67,7 @@ export default function ProfileChat({ lang, t }: { lang: Locale; t: Dictionary }
       const data = (await res.json()) as {
         reply?: string;
         links?: ChatLink[];
-        mode?: "gemini" | "local";
+        mode?: "live" | "local";
         error?: string;
       };
 
@@ -115,7 +115,7 @@ export default function ProfileChat({ lang, t }: { lang: Locale; t: Dictionary }
           <div className={styles.threadHeader}>
             <span className={styles.status}>
               <span className={styles.statusDot} aria-hidden />
-              {mode === "gemini" ? t.chat.modeLive : t.chat.modeLocal}
+              {mode === "live" ? t.chat.modeLive : t.chat.modeLocal}
             </span>
             <button
               type="button"
