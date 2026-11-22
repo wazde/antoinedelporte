@@ -1,0 +1,25 @@
+.title {
+  font-size: clamp(2.6rem, 5vw, 4.4rem);
+  line-height: 1.04;
+  letter-spacing: 0.014em;
+  font-weight: 400;
+  color: var(--hero-on-atmo);
+  text-shadow: 0 2px 24px rgb(22 24 13 / 0.18);
+  margin: 0 0 1.25rem;
+}
+
+.facet {
+  display: inline-block;
+  font-style: italic;
+  background: linear-gradient(180deg, #fff6df 10%, #f0bd5e 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+  transition: opacity 0.36s ease, filter 0.36s ease, transform 0.36s ease;
+  will-change: opacity, filter, transform;
+}
+
+.facetOut {
+  opacity: 0;
+  filter: blur(7px);
+  transform: translateY(6px);
+}
