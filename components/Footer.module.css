@@ -1,24 +1,30 @@
+/* Pied de page en miroir du haut : dégradé atmosphérique olive/sauge + grain */
 .footer {
-  border-top: 1px solid var(--line);
-  padding: 4.5rem 0 2.5rem;
+  position: relative;
+  padding: 7rem 0 3rem;
+  color: var(--hero-on-atmo);
+  background-image:
+    radial-gradient(110% 380px at 50% 100%, var(--atmo-top-1) 0%, var(--atmo-top-2) 45%, transparent 100%),
+    linear-gradient(180deg, var(--bg) 0%, var(--atmo-top-4) 22%, var(--atmo-top-3) 50%, var(--atmo-top-2) 78%, var(--atmo-top-1) 100%);
 }
 
 .contact {
-  color: var(--muted);
+  color: var(--hero-muted-on-atmo);
   font-size: 0.92rem;
   margin: 0 0 0.5rem;
 }
 
 .email {
   font-family: var(--font-serif), Georgia, serif;
-  font-size: clamp(2rem, 4.8vw, 3.1rem);
+  font-size: clamp(2rem, 4.8vw, 3.25rem);
   font-weight: 400;
-  color: var(--heading);
+  color: var(--hero-on-atmo);
   letter-spacing: 0.015em;
 }
 
 .email:hover {
-  color: var(--accent);
+  color: var(--hero-on-atmo);
+  opacity: 0.85;
 }
 
 .bottom {
@@ -28,9 +34,9 @@
   gap: 1rem;
   margin-top: 3.5rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgb(246 247 245 / 0.22);
   font-size: 0.88rem;
-  color: var(--muted);
+  color: var(--hero-muted-on-atmo);
 }
 
 .socials {
@@ -40,6 +46,10 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
+}
+
+.socials a:hover {
+  color: var(--hero-on-atmo);
 }
 
 .made {

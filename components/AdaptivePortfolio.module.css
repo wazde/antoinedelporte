@@ -17,12 +17,17 @@
 }
 
 .wizardCard {
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  border-radius: 1rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid var(--glass-border);
+  border-radius: 1.35rem;
   padding: 2.5rem;
   max-width: 52rem;
   margin-inline: auto;
+  box-shadow:
+    0 0 0 14px var(--glass-ring),
+    0 24px 60px -24px rgb(22 24 13 / 0.28);
 }
 
 .wizardTop {
@@ -165,8 +170,13 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.85rem;
-  padding: 1.1rem 0;
-  border-bottom: 1px solid var(--line);
+  margin-top: 1.25rem;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
 }
 
 .modeTabs {
@@ -228,36 +238,47 @@
 
 /* ---------- VUE ÉDITORIALE ---------- */
 .editorialHero {
-  padding: 4.5rem 0 4rem;
+  padding: 4rem 0 4rem;
   border-bottom: 1px solid var(--line);
+}
+
+.editorialHero .kicker {
+  color: var(--hero-muted-on-atmo);
 }
 
 .editorialTitle {
   font-size: clamp(2.85rem, 6.8vw, 5.25rem);
   line-height: 1.04;
   letter-spacing: 0.012em;
+  color: var(--hero-on-atmo);
+  text-shadow: 0 2px 24px rgb(22 24 13 / 0.16);
   margin: 0 0 1.5rem;
   max-width: 17ch;
 }
 .editorialTitle em {
   font-style: italic;
-  color: var(--accent);
+  color: var(--hero-on-atmo);
 }
 
 .editorialIntro {
   max-width: 42rem;
-  font-size: 1.15rem;
-  color: var(--muted);
+  font-size: 1.12rem;
+  color: var(--hero-muted-on-atmo);
   margin: 0 0 3rem;
 }
 
 .pillars {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
-  gap: 1.75rem;
+  gap: 1.25rem;
   margin: 0;
-  padding-top: 2rem;
-  border-top: 1px solid var(--line);
+  padding: 1.75rem;
+  border-radius: 1.15rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 0 10px var(--glass-ring);
 }
 .pillar dt {
   font-size: 0.78rem;
@@ -287,8 +308,13 @@
   justify-content: space-between;
   align-items: flex-end;
   gap: 1.5rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid var(--line);
+  padding: 2rem;
+  border-radius: 1.15rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 0 10px var(--glass-ring);
 }
 
 .compactTitle {
@@ -459,8 +485,13 @@
 }
 
 .systemHeader {
-  padding-bottom: 2rem;
-  border-bottom: 1px solid var(--line);
+  padding: 2rem;
+  border-radius: 1.15rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 0 10px var(--glass-ring);
 }
 
 .tokenGrid {

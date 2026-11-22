@@ -1,9 +1,9 @@
 .about {
-  padding: 5.5rem 0 6rem;
+  padding: 4rem 0 6rem;
 }
 
 .kicker {
-  color: var(--accent);
+  color: var(--hero-muted-on-atmo);
   font-size: 0.82rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
@@ -16,15 +16,24 @@
   letter-spacing: 0.012em;
   line-height: 1.06;
   font-weight: 400;
+  color: var(--hero-on-atmo);
+  text-shadow: 0 2px 24px rgb(22 24 13 / 0.16);
   margin: 0 0 1.75rem;
   max-width: 21ch;
 }
 
 .lead {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   color: var(--heading);
-  max-width: 42rem;
-  margin: 0 0 2rem;
+  max-width: 44rem;
+  margin: 0 0 2.25rem;
+  padding: 1.5rem 1.75rem;
+  border-radius: 1rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 0 10px var(--glass-ring);
 }
 
 .prose {
