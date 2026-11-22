@@ -1,19 +1,7 @@
-/* ---------- SPLIT HERO : Éditorial à gauche · Chat IA à droite ---------- */
-.splitHero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  align-items: center;
-  gap: 3rem;
-  padding: 4.5rem 0 4rem;
-}
-
-.editorialCol {
-  display: flex;
-  flex-direction: column;
-}
-
-.chatCol {
-  min-width: 0;
+/* ---------- HÉRO ÉDITORIAL (colonne principale à gauche du panel IA) ---------- */
+.hero {
+  padding: 5rem 0 4rem;
+  max-width: 46rem;
 }
 
 .kicker {
@@ -293,21 +281,15 @@
   overflow: hidden;
 }
 
-@media (max-width: 920px) {
-  .splitHero {
-    grid-template-columns: 1fr;
-    gap: 2.25rem;
-    padding: 3rem 0 3.25rem;
-  }
+@media (max-width: 1240px) {
   .folderGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 640px) {
-  .splitHero {
-    padding: 2.25rem 0 2.75rem;
-    gap: 1.75rem;
+  .hero {
+    padding: 2.5rem 0 2.75rem;
   }
   .pillars {
     padding: 1.25rem;

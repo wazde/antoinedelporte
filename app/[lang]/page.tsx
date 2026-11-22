@@ -3,7 +3,6 @@ import { dictionaries, type Locale } from "@/lib/i18n";
 import { getProjects } from "@/lib/projects";
 import { site } from "@/lib/site";
 import CyclingTitle from "@/components/CyclingTitle";
-import ProfileChat from "@/components/ProfileChat";
 import styles from "./page.module.css";
 
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
@@ -14,25 +13,19 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
 
   return (
     <div className="container">
-      {/* SPLIT HERO : Éditorial à gauche · Chat IA à droite */}
-      <section className={styles.splitHero}>
-        <div className={styles.editorialCol}>
-          <p className={styles.kicker}>{t.home.kicker}</p>
-          <CyclingTitle prefix={t.chat.heading} facets={t.chat.headingFacets} />
-          <p className={styles.intro}>{t.home.intro}</p>
+      {/* HÉRO ÉDITORIAL (tout le site vit à gauche, le chat IA est en panel fixe à droite) */}
+      <section className={styles.hero}>
+        <p className={styles.kicker}>{t.home.kicker}</p>
+        <CyclingTitle prefix={t.home.title} facets={[t.home.titleItalic, ...t.chat.headingFacets.slice(1)]} />
+        <p className={styles.intro}>{t.home.intro}</p>
 
-          <div className={styles.heroActions}>
-            <a href="#work" className={styles.primaryCta}>
-              {t.home.selected} ↓
-            </a>
-            <a href={site.cv[lang]} download className={styles.secondaryCta}>
-              {t.footer.cv} ↓
-            </a>
-          </div>
-        </div>
-
-        <div className={styles.chatCol}>
-          <ProfileChat lang={lang} t={t} />
+        <div className={styles.heroActions}>
+          <a href="#work" className={styles.primaryCta}>
+            {t.home.selected} ↓
+          </a>
+          <a href={site.cv[lang]} download className={styles.secondaryCta}>
+            {t.footer.cv} ↓
+          </a>
         </div>
       </section>
 

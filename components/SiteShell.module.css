@@ -1,0 +1,114 @@
+.shell {
+  min-height: 100vh;
+  transition: padding-right 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.withPanel {
+  padding-right: 380px;
+}
+
+.mainColumn {
+  min-width: 0;
+}
+
+/* Panel IA fixé à droite sur toute la hauteur */
+.sidePanel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 380px;
+  z-index: 40;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-left: 1px solid var(--line);
+  box-shadow: -12px 0 40px -24px rgb(22 24 13 / 0.3);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.panelDesktopOpen {
+  transform: translateX(0);
+}
+
+.panelDesktopClosed {
+  transform: translateX(100%);
+}
+
+.backdrop {
+  display: none;
+}
+
+/* Bouton flottant golden amber pour ouvrir le panel */
+.fab {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 35;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.72rem 1.15rem;
+  border-radius: 999px;
+  border: 1px solid var(--amber);
+  background: var(--amber);
+  color: #16180d;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 14px 32px -10px rgb(22 24 13 / 0.45);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.fab:hover {
+  background: var(--amber-bright);
+  transform: translateY(-2px);
+}
+
+.fabDot {
+  width: 0.48rem;
+  height: 0.48rem;
+  border-radius: 999px;
+  background: #16180d;
+}
+
+.fabDesktopHidden {
+  display: none;
+}
+
+.fabHidden {
+  display: none;
+}
+
+/* Sur tablette & mobile (<= 1080px) : tiroir coulissant à la demande */
+@media (max-width: 1080px) {
+  .withPanel {
+    padding-right: 0;
+  }
+
+  .sidePanel {
+    width: min(100vw, 400px);
+    transform: translateX(100%);
+  }
+
+  .panelMobileOpen {
+    transform: translateX(0);
+  }
+
+  .backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 38;
+    background: rgb(11 12 6 / 0.45);
+    backdrop-filter: blur(4px);
+  }
+
+  .fabDesktopHidden {
+    display: inline-flex;
+  }
+
+  .fabHidden {
+    display: none;
+  }
+}

@@ -7,6 +7,7 @@ import { site } from "@/lib/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import EasterEgg from "@/components/EasterEgg";
+import SiteShell from "@/components/SiteShell";
 import "../globals.css";
 
 const instrumentSerif = Instrument_Serif({
@@ -62,9 +63,11 @@ export default async function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
-        <Header lang={lang} t={t} />
-        <main>{children}</main>
-        <Footer lang={lang} t={t} />
+        <SiteShell lang={lang} t={t}>
+          <Header lang={lang} t={t} />
+          <main>{children}</main>
+          <Footer lang={lang} t={t} />
+        </SiteShell>
         <EasterEgg message={t.egg} />
       </body>
     </html>
