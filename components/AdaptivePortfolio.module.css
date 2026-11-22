@@ -697,132 +697,191 @@
   color: var(--accent);
 }
 
-.list {
+/* ---------- CARTES DOSSIER À ONGLET (USE CASES) ---------- */
+.folderGrid {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.25rem;
 }
 
-.card {
+.folderCard {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  padding: 2.25rem;
-  border-radius: 0.75rem;
-  background: var(--bg-card);
-  border: 1px solid var(--line);
+  justify-content: flex-end;
+  min-height: 27rem;
+  border-radius: 1.5rem;
+  overflow: hidden;
   text-decoration: none;
-  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+  border: 6px solid var(--folder-frame);
+  background: var(--folder-frame);
+  box-shadow: 0 18px 40px -24px rgb(22 24 13 / 0.38);
+  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.2, 1), box-shadow 0.3s ease;
 }
-.card:hover {
-  border-color: var(--accent);
-  background: var(--bg-subtle);
-  transform: translateY(-2px);
-}
-
-.cardMeta {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  font-size: 0.82rem;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+.folderCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 52px -24px rgb(22 24 13 / 0.48);
 }
 
-.cardIndex {
-  font-family: var(--font-serif), Georgia, serif;
-  font-style: italic;
-  font-size: 1.05rem;
-  color: var(--accent);
-  margin-right: 0.25rem;
+/* 3 variantes tonales fidèles à la palette d'Antoine */
+.folderDark {
+  --folder-frame: #16180d;
+  --folder-sheet: #212413;
+  --folder-fg: #eff1ed;
+  --folder-muted: #b3b985;
+  --folder-accent: #d6d7b9;
 }
 
-.dot {
-  opacity: 0.5;
+.folderLight {
+  --folder-frame: #c0c7b8;
+  --folder-sheet: #eff1ed;
+  --folder-fg: #16180d;
+  --folder-muted: #5b6037;
+  --folder-accent: #766153;
 }
 
-.cardMain {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.75rem;
+.folderDeep {
+  --folder-frame: #2f2621;
+  --folder-sheet: #171311;
+  --folder-fg: #f1f2e8;
+  --folder-muted: #b29e92;
+  --folder-accent: #e5dfdb;
 }
 
-.cardBody {
-  max-width: 44rem;
-  flex: 1;
+.folderBackdrop {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 58%;
+  overflow: hidden;
+  background: linear-gradient(145deg, #717744 0%, #bcbd8b 55%, #eff1ed 100%);
+  border-radius: 1.1rem 1.1rem 0 0;
 }
 
-.cardIllust {
-  width: 7.75rem;
-  height: 7.75rem;
-  border-radius: 1rem;
+.folderIllust {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: center 22%;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+.folderCard:hover .folderIllust {
+  transform: scale(1.06);
+}
+
+.folderFlap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  margin-top: 6.25rem;
+  flex: 1;
+  color: var(--folder-sheet);
+  transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+.folderTallPreview .folderFlap {
+  margin-top: 10.5rem;
+}
+.folderCard:hover .folderFlap {
+  transform: translateY(10px);
+}
+
+.folderTabSvg {
+  display: block;
+  width: 100%;
+  height: 2.35rem;
+  margin-bottom: -1px;
   flex-shrink: 0;
-  background: #eff1ed;
-  border: 1px solid var(--line);
-  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.2, 1);
-}
-.card:hover .cardIllust {
-  transform: rotate(-3deg) scale(1.04);
 }
 
-.cardTitle {
-  font-size: clamp(1.75rem, 3.3vw, 2.35rem);
-  line-height: 1.12;
-  letter-spacing: 0.015em;
-  font-weight: 400;
-  margin: 0 0 0.6rem;
-}
-
-.cardSummary {
-  margin: 0;
-  color: var(--muted);
-  font-size: 1.02rem;
-}
-
-.cardFooter {
+.folderBody {
+  flex: 1;
+  background: var(--folder-sheet);
+  color: var(--folder-fg);
+  padding: 0 1.4rem 1.6rem;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-between;
-  gap: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--line);
+  gap: 1.5rem;
 }
 
-.tags {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.folderTopRow {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-}
-.tags li {
-  font-size: 0.76rem;
-  padding: 0.2rem 0.65rem;
-  background: var(--bg);
-  border: 1px solid var(--line);
-  color: var(--muted);
-  border-radius: 999px;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: -1.15rem;
 }
 
-.cardCta {
-  font-size: 0.9rem;
+.folderNum {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 2.45rem;
   font-weight: 500;
-  color: var(--accent);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--folder-fg);
 }
-.cardCta span {
-  display: inline-block;
+
+.folderArrow {
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--folder-accent);
+  margin-top: 0.7rem;
   transition: transform 0.25s ease;
 }
-.card:hover .cardCta span {
-  transform: translateX(5px);
+.folderCard:hover .folderArrow {
+  transform: translate(3px, -3px);
+}
+
+.folderText {
+  margin-top: auto;
+}
+
+.folderMeta {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--folder-accent);
+  margin-bottom: 0.45rem;
+}
+
+.folderTitle {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 1.5rem;
+  line-height: 1.12;
+  letter-spacing: 0.012em;
+  font-weight: 400;
+  color: var(--folder-fg);
+  margin: 0 0 0.5rem;
+}
+
+.folderSummary {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.48;
+  color: var(--folder-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .folderGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .folderGrid {
+    grid-template-columns: 1fr;
+  }
+  .folderCard {
+    min-height: 24rem;
+  }
 }
 
 @media (max-width: 680px) {

@@ -510,6 +510,8 @@ function CaseStudiesList({
   t: Dictionary;
   projects: ProjectSummary[];
 }) {
+  const variants = [styles.folderDark, styles.folderLight, styles.folderDeep];
+
   return (
     <section id="work" className={styles.workSection}>
       <div className={styles.sectionHeader}>
@@ -517,46 +519,60 @@ function CaseStudiesList({
         <span className={styles.sectionCount}>0{projects.length}</span>
       </div>
 
-      <ul className={styles.list}>
-        {projects.map(({ slug, meta }, index) => (
-          <li key={slug}>
-            <Link href={`/${lang}/work/${slug}`} className={styles.card}>
-              <div className={styles.cardMeta}>
-                <span className={styles.cardIndex}>0{index + 1}</span>
-                <span>{meta.year}</span>
-                <span className={styles.dot}>·</span>
-                <span>{meta.role}</span>
-              </div>
-
-              <div className={styles.cardMain}>
-                <div className={styles.cardBody}>
-                  <h3 className={styles.cardTitle}>{meta.title}</h3>
-                  <p className={styles.cardSummary}>{meta.summary}</p>
+      <ul className={styles.folderGrid}>
+        {projects.map(({ slug, meta }, index) => {
+          const variant = variants[index % variants.length];
+          const isTallPreview = index % 3 === 2;
+          return (
+            <li key={slug}>
+              <Link
+                href={`/${lang}/work/${slug}`}
+                className={`${styles.folderCard} ${variant} ${isTallPreview ? styles.folderTallPreview : ""}`}
+              >
+                <div className={styles.folderBackdrop}>
+                  {meta.illustration && (
+                    <img
+                      src={meta.illustration}
+                      alt=""
+                      className={styles.folderIllust}
+                    />
+                  )}
                 </div>
-                {meta.illustration && (
-                  <img
-                    src={meta.illustration}
-                    alt=""
-                    width={128}
-                    height={128}
-                    className={styles.cardIllust}
-                  />
-                )}
-              </div>
 
-              <div className={styles.cardFooter}>
-                <ul className={styles.tags}>
-                  {meta.tags.map((tag) => (
-                    <li key={tag}>{tag}</li>
-                  ))}
-                </ul>
-                <span className={styles.cardCta}>
-                  {t.home.readCase} <span aria-hidden>→</span>
-                </span>
-              </div>
-            </Link>
-          </li>
-        ))}
+                <div className={styles.folderFlap}>
+                  <svg
+                    className={styles.folderTabSvg}
+                    viewBox="0 0 400 44"
+                    preserveAspectRatio="none"
+                    aria-hidden
+                  >
+                    <path
+                      d="M0,44 L0,20 Q0,0 20,0 L108,0 Q126,0 138,16 L146,28 Q156,40 174,40 L380,40 Q400,40 400,44 Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+
+                  <div className={styles.folderBody}>
+                    <div className={styles.folderTopRow}>
+                      <span className={styles.folderNum}>0{index + 1}</span>
+                      <span className={styles.folderArrow} aria-hidden>
+                        ↗
+                      </span>
+                    </div>
+
+                    <div className={styles.folderText}>
+                      <span className={styles.folderMeta}>
+                        {meta.year} · {meta.role}
+                      </span>
+                      <h3 className={styles.folderTitle}>{meta.title}</h3>
+                      <p className={styles.folderSummary}>{meta.summary}</p>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </section>
   );
