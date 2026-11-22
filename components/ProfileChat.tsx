@@ -31,7 +31,17 @@ function renderFormatted(text: string) {
   });
 }
 
-export default function ProfileChat({ lang, t }: { lang: Locale; t: Dictionary }) {
+export default function ProfileChat({
+  lang,
+  t,
+  customPrompts,
+  customSubtitle,
+}: {
+  lang: Locale;
+  t: Dictionary;
+  customPrompts?: readonly string[];
+  customSubtitle?: string;
+}) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -107,7 +117,7 @@ export default function ProfileChat({ lang, t }: { lang: Locale; t: Dictionary }
         <h1 className={styles.title}>
           {t.chat.heading} <em>{t.chat.headingItalic}</em>
         </h1>
-        <p className={styles.subtitle}>{t.chat.subtitle}</p>
+        <p className={styles.subtitle}>{customSubtitle || t.chat.subtitle}</p>
       </div>
 
       <div className={styles.chatShell}>
@@ -198,7 +208,7 @@ export default function ProfileChat({ lang, t }: { lang: Locale; t: Dictionary }
         </form>
 
         <div className={styles.prompts}>
-          {t.chat.prompts.map((prompt) => (
+          {(customPrompts ?? t.chat.prompts).map((prompt) => (
             <button
               key={prompt}
               type="button"
