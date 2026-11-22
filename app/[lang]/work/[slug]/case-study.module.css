@@ -14,10 +14,10 @@
 }
 
 .title {
-  font-size: clamp(2.1rem, 4.8vw, 3.4rem);
-  letter-spacing: 0.005em;
-  line-height: 1.12;
-  font-weight: 600;
+  font-size: clamp(2.4rem, 5.2vw, 3.85rem);
+  letter-spacing: 0.012em;
+  line-height: 1.06;
+  font-weight: 400;
   margin: 0 0 1.15rem;
   max-width: 24ch;
 }
@@ -56,10 +56,10 @@
 }
 
 .prose h2 {
-  font-size: 1.75rem;
-  letter-spacing: 0.005em;
-  line-height: 1.2;
-  font-weight: 600;
+  font-size: 2rem;
+  letter-spacing: 0.015em;
+  line-height: 1.15;
+  font-weight: 400;
   margin: 3rem 0 0.85rem;
 }
 

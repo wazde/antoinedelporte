@@ -63,9 +63,8 @@ h2,
 h3,
 .serif {
   font-family: var(--font-serif), Georgia, serif;
-  font-weight: 600;
-  letter-spacing: 0.005em;
-  font-variation-settings: "SOFT" 50, "WONK" 0;
+  font-weight: 400;
+  letter-spacing: 0.015em;
   color: var(--heading);
 }
 

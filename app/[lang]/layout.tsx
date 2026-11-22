@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Fraunces } from "next/font/google";
+import { Instrument_Serif } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import { dictionaries, isLocale, locales } from "@/lib/i18n";
 import { site } from "@/lib/site";
@@ -9,10 +9,10 @@ import Footer from "@/components/Footer";
 import EasterEgg from "@/components/EasterEgg";
 import "../globals.css";
 
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+const instrumentSerif = Instrument_Serif({
+  weight: "400",
   style: ["normal", "italic"],
+  subsets: ["latin"],
   display: "swap",
 });
 
@@ -55,7 +55,7 @@ export default async function RootLayout({
       suppressHydrationWarning
       style={{
         ["--font-sans" as string]: GeistSans.style.fontFamily,
-        ["--font-serif" as string]: fraunces.style.fontFamily,
+        ["--font-serif" as string]: instrumentSerif.style.fontFamily,
       }}
     >
       <head>

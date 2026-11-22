@@ -12,12 +12,12 @@
 }
 
 .title {
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  letter-spacing: 0.005em;
-  line-height: 1.12;
-  font-weight: 600;
+  font-size: clamp(2.5rem, 5.8vw, 4.1rem);
+  letter-spacing: 0.012em;
+  line-height: 1.06;
+  font-weight: 400;
   margin: 0 0 1.75rem;
-  max-width: 22ch;
+  max-width: 21ch;
 }
 
 .lead {

@@ -16,9 +16,9 @@
 
 .logo {
   font-family: var(--font-serif), Georgia, serif;
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: 0.015em;
   color: var(--heading);
   text-decoration: none;
 }
