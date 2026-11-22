@@ -513,12 +513,11 @@ function CaseStudiesList({
         {projects.map(({ slug, meta }, index) => {
           const variant = variants[index % variants.length];
           const Doodle = doodles[index % doodles.length];
-          const isTallPreview = index % 3 === 2;
           return (
             <li key={slug}>
               <Link
                 href={`/${lang}/work/${slug}`}
-                className={`${styles.folderCard} ${variant} ${isTallPreview ? styles.folderTallPreview : ""}`}
+                className={`${styles.folderCard} ${variant}`}
               >
                 <div className={styles.folderBackdrop}>
                   <Doodle className={styles.folderDoodle} />
@@ -546,9 +545,6 @@ function CaseStudiesList({
                     </div>
 
                     <div className={styles.folderText}>
-                      <span className={styles.folderMeta}>
-                        {meta.year} · {meta.role}
-                      </span>
                       <h3 className={styles.folderTitle}>{meta.title}</h3>
                       <p className={styles.folderSummary}>{meta.summary}</p>
                     </div>
